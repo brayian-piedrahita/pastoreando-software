@@ -1,5 +1,16 @@
-.env
+# Entorno virtual y caches de Python
 venv/
+.venv/
 __pycache__/
-*.sqlite3
+*.pyc
+.pytest_cache/
+
+# Base de datos local y secretos
+data/
 *.db
+.env
+
+# Editor y sistema
+.vscode/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4CAF50">
+  <title>Pastoreando - Panel</title>
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/img/icono-192.png">
+  <link rel="stylesheet" href="/vendor/materialize.min.css">
+  <link rel="stylesheet" href="/vendor/material-icons.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div id="bannerOffline" class="banner-offline">Sin conexión: los datos no se actualizarán hasta recuperar la señal.</div>
+
+  <nav>
+    <div class="nav-wrapper">
+      <span class="brand-logo">Pastoreando</span>
+      <ul class="right">
+        <li class="hide-on-small-only"><span id="textoUsuario" class="usuario"></span></li>
+        <li><button id="botonSalir" class="btn-flat white-text" title="Cerrar sesión"><i class="material-icons">logout</i></button></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="contenedor-panel">
+    <div class="pestanas" role="tablist">
+      <button class="pestana activa" data-seccion="seccionLotes" role="tab"><i class="material-icons">grass</i>Lotes</button>
+      <button class="pestana" data-seccion="seccionCostos" role="tab" id="pestanaCostos"><i class="material-icons">calculate</i>Costos</button>
+      <button class="pestana" data-seccion="seccionContratos" role="tab"><i class="material-icons">description</i>Contratos</button>
+    </div>
+
+    <!-- ===== LOTES ===== -->
+    <section id="seccionLotes" class="seccion activa">
+      <div class="barra-seccion">
+        <h2>Lotes y carga animal</h2>
+        <button id="botonNuevoLote" class="btn waves-effect" style="display:none"><i class="material-icons left">add</i>Nuevo lote</button>
+      </div>
+      <div id="listaLotes" class="rejilla"></div>
+    </section>
+
+    <!-- ===== COSTOS ===== -->
+    <section id="seccionCostos" class="seccion">
+      <div class="barra-seccion"><h2>Costo por Unidad Ganadera</h2></div>
+      <div class="panel-blanco">
+        <form id="formCosto" novalidate>
+          <div class="row">
+            <div class="input-field col s12 m6"><input id="costo_alimentacion" type="number" min="0" step="any"><label for="costo_alimentacion">Alimentación del lote ($)</label></div>
+            <div class="input-field col s12 m6"><input id="costo_mantenimiento" type="number" min="0" step="any"><label for="costo_mantenimiento">Mantenimiento del lote ($)</label></div>
+            <div class="input-field col s12 m6"><input id="costo_servicios" type="number" min="0" step="any"><label for="costo_servicios">Servicios del lote ($)</label></div>
+            <div class="input-field col s12 m6"><input id="costo_impuestos" type="number" min="0" step="any"><label for="costo_impuestos">Impuestos del lote ($)</label></div>
+            <div class="input-field col s12 m6"><input id="costo_cantidad_animales" type="number" min="1" step="1"><label for="costo_cantidad_animales">Cantidad de animales</label></div>
+            <div class="col s12 m6">
+              <label for="costo_proposito">Propósito del ganado</label>
+              <select id="costo_proposito" class="browser-default">
+                <option value="Carne">Carne</option>
+                <option value="Leche">Leche</option>
+                <option value="Doble Proposito">Doble Propósito</option>
+              </select>
+            </div>
+          </div>
+          <p id="mensajeCosto" class="mensaje-error" role="alert"></p>
+          <button class="btn waves-effect" type="submit"><i class="material-icons left">calculate</i>Calcular</button>
+        </form>
+      </div>
+      <div id="resultadoCosto"></div>
+      <div id="bloqueHistorial" style="display:none">
+        <div class="barra-seccion"><h2>Últimos cálculos</h2></div>
+        <div class="tabla-contenedor"><table class="striped"><thead><tr><th>Fecha</th><th>Usuario</th><th>Propósito</th><th>Animales</th><th>Costo por cabeza</th></tr></thead><tbody id="filasHistorial"></tbody></table></div>
+      </div>
+    </section>
+
+    <!-- ===== CONTRATOS ===== -->
+    <section id="seccionContratos" class="seccion">
+      <div class="barra-seccion">
+        <h2>Contratos de arrendamiento</h2>
+        <button id="botonNuevoContrato" class="btn waves-effect" style="display:none"><i class="material-icons left">add</i>Nuevo contrato</button>
+      </div>
+      <div class="tabla-contenedor">
+        <table class="striped">
+          <thead><tr><th>N.°</th><th>Lote</th><th>Arrendatario</th><th>Vigencia</th><th>Cabezas</th><th>Valor mensual</th><th>Estado</th><th></th></tr></thead>
+          <tbody id="filasContratos"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal: lote -->
+  <div id="modalLote" class="modal">
+    <form id="formLote" novalidate>
+      <div class="modal-content">
+        <h5 id="tituloModalLote">Nuevo lote</h5>
+        <div class="input-field"><input id="lote_nombre_lote" type="text" maxlength="50"><label for="lote_nombre_lote">Nombre del lote</label></div>
+        <div class="input-field"><input id="lote_hectareas" type="number" min="0" step="any"><label for="lote_hectareas">Hectáreas</label></div>
+        <div class="input-field"><input id="lote_capacidad_carga" type="number" min="1" step="1"><label for="lote_capacidad_carga">Capacidad de carga (cabezas)</label></div>
+        <div class="input-field"><input id="lote_tipo_pastura" type="text" maxlength="50"><label for="lote_tipo_pastura">Tipo de pastura</label></div>
+        <p id="mensajeLote" class="mensaje-error" role="alert"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="modal-close btn-flat">Cancelar</button>
+        <button type="submit" class="btn">Guardar</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Modal: contrato nuevo -->
+  <div id="modalContrato" class="modal">
+    <form id="formContrato" novalidate>
+      <div class="modal-content">
+        <h5>Nuevo contrato</h5>
+        <label for="contrato_id_lote">Lote</label>
+        <select id="contrato_id_lote" class="browser-default"></select>
+        <div class="input-field"><input id="contrato_fecha_inicio" type="date"><label for="contrato_fecha_inicio" class="active">Fecha de inicio</label></div>
+        <div class="input-field"><input id="contrato_meses_duracion" type="number" min="1" max="60" step="1"><label for="contrato_meses_duracion">Duración (meses)</label></div>
+        <div class="input-field"><input id="contrato_tarifa_por_cabeza" type="number" min="0" step="any"><label for="contrato_tarifa_por_cabeza">Tarifa por cabeza al mes ($)</label></div>
+        <p id="mensajeContrato" class="mensaje-error" role="alert"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="modal-close btn-flat">Cancelar</button>
+        <button type="submit" class="btn">Crear contrato</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Modal: ganado del contrato -->
+  <div id="modalGanado" class="modal">
+    <div class="modal-content">
+      <h5 id="tituloModalGanado">Ganado del contrato</h5>
+      <div id="avisoGanado"></div>
+      <table class="striped">
+        <thead><tr><th>Raza</th><th>Cabezas</th><th>Propósito</th><th></th></tr></thead>
+        <tbody id="filasGanado"></tbody>
+      </table>
+      <form id="formGanado" novalidate style="display:none">
+        <h6 style="margin-top:20px">Agregar ganado</h6>
+        <div class="input-field"><input id="ganado_raza" type="text" maxlength="40"><label for="ganado_raza">Raza</label></div>
+        <div class="input-field"><input id="ganado_cantidad_cabezas" type="number" min="1" step="1"><label for="ganado_cantidad_cabezas">Cantidad de cabezas</label></div>
+        <select id="ganado_proposito" class="browser-default">
+          <option value="Carne">Carne</option>
+          <option value="Leche">Leche</option>
+          <option value="Doble Proposito">Doble Propósito</option>
+        </select>
+        <p id="mensajeGanado" class="mensaje-error" role="alert"></p>
+        <button type="submit" class="btn">Agregar</button>
+      </form>
+    </div>
+    <div class="modal-footer"><button type="button" class="modal-close btn-flat">Cerrar</button></div>
+  </div>
+
+  <!-- Modal: documento del contrato -->
+  <div id="modalDocumento" class="modal">
+    <div class="modal-content">
+      <div id="textoDocumento" class="documento-contrato"></div>
+      <p class="huella">Huella SHA-256: <span id="huellaDocumento"></span></p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" id="botonImprimir" class="btn-flat">Imprimir</button>
+      <button type="button" class="modal-close btn-flat">Cerrar</button>
+    </div>
+  </div>
+
+  <script src="/vendor/materialize.min.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/panel.js"></script>
+</body>
+</html>
