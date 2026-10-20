@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4CAF50">
+  <title>Pastoreando - Iniciar sesión</title>
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/img/icono-192.png">
+  <link rel="stylesheet" href="/vendor/materialize.min.css">
+  <link rel="stylesheet" href="/vendor/material-icons.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div id="bannerOffline" class="banner-offline">Sin conexión: los datos no se actualizarán hasta recuperar la señal.</div>
+  <main class="pantalla-login">
+    <section class="card tarjeta-login">
+      <img class="logo" src="/img/logo.png" alt="Pastoreando, sistema de gestión ganadera integral">
+      <h1>Iniciar sesión</h1>
+      <form id="formLogin" novalidate>
+        <div class="input-field">
+          <i class="material-icons prefix">email</i>
+          <input id="correo" type="email" autocomplete="username" required>
+          <label for="correo">Correo electrónico</label>
+        </div>
+        <div class="input-field">
+          <i class="material-icons prefix">lock</i>
+          <input id="contrasena" type="password" autocomplete="current-password" required>
+          <label for="contrasena">Contraseña</label>
+        </div>
+        <p id="mensajeLogin" class="mensaje-error" role="alert"></p>
+        <button id="botonEntrar" class="btn btn-large waves-effect" type="submit" style="width:100%">Entrar</button>
+      </form>
+      <p class="ayuda-demo">
+        Usuarios de prueba (clave <strong>Pastoreando2026*</strong>):<br>
+        carlos.ramirez@pastoreando.co (Propietario)<br>
+        brayian.piedrahita@pastoreando.co (Arrendatario)<br>
+        sandra.bedoya@pastoreando.co (Contador)
+      </p>
+    </section>
+  </main>
+  <script src="/js/api.js"></script>
+  <script src="/js/login.js"></script>
+</body>
+</html>
