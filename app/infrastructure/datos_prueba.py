@@ -92,11 +92,64 @@ GANADO = [
     (5, "Simmental", 8, "Doble Proposito"),
 ]
 
+# AA5-EV03: pagos de los contratos 1 a 3 y recomendaciones de los tecnicos.
+PAGOS = [
+    (1, "2026-10-01", 2210000.00, "Transferencia", "Confirmado"),
+    (1, "2026-11-01", 2210000.00, "Transferencia", "Pendiente"),
+    (2, "2026-09-15", 2160000.00, "Efectivo", "Confirmado"),
+    (3, "2026-08-01", 2800000.00, "Consignacion", "Confirmado"),
+]
+
+# (idGanado, idZootecnista, fecha, descripcion)
+RECOMENDACIONES = [
+    (
+        1,
+        3,
+        "2026-10-05",
+        "Rotar el hato cada 15 dias para permitir la recuperacion del pasto.",
+    ),
+    (
+        8,
+        8,
+        "2026-10-12",
+        "Suplementar con sal mineralizada y revisar la fuente de agua del lote.",
+    ),
+]
+
+
+def _cargar_pagos_y_recomendaciones(con) -> None:
+    """Inserta los pagos y recomendaciones de prueba si todavia no existen.
+
+    Tambien aplica a bases creadas antes de AA5: las tablas nuevas se crean al
+    iniciar y aqui se llenan, siempre que existan los contratos de prueba.
+    """
+    hay_contratos = con.execute(
+        "SELECT COUNT(*) FROM CONTRATOS WHERE idContrato BETWEEN 1 AND 3"
+    ).fetchone()[0]
+    hay_ganado = con.execute(
+        "SELECT COUNT(*) FROM GANADO WHERE idGanado = 8"
+    ).fetchone()[0]
+    if hay_contratos < 3 or not hay_ganado:
+        return
+    if con.execute("SELECT COUNT(*) FROM PAGOS").fetchone()[0] == 0:
+        con.executemany(
+            "INSERT INTO PAGOS (idContrato, fechaPago, montoTotal, metodoPago, "
+            "estadoPago) VALUES (?, ?, ?, ?, ?)",
+            PAGOS,
+        )
+    if con.execute("SELECT COUNT(*) FROM RECOMENDACIONES").fetchone()[0] == 0:
+        con.executemany(
+            "INSERT INTO RECOMENDACIONES (idGanado, idZootecnista, "
+            "fechaRecomendacion, descripcion) VALUES (?, ?, ?, ?)",
+            RECOMENDACIONES,
+        )
+
 
 def cargar_datos_prueba() -> bool:
     """Inserta los datos de prueba solo si no hay usuarios. Devuelve si cargo."""
     with obtener_bd().conexion() as con:
         if con.execute("SELECT COUNT(*) FROM USUARIOS").fetchone()[0] > 0:
+            _cargar_pagos_y_recomendaciones(con)
             return False
         # Un solo hash para todos: calcularlo ocho veces seria lento sin necesidad.
         hash_comun = generar_hash(config.CLAVE_USUARIOS_PRUEBA)
@@ -120,4 +173,5 @@ def cargar_datos_prueba() -> bool:
             "VALUES (?, ?, ?, ?)",
             GANADO,
         )
+        _cargar_pagos_y_recomendaciones(con)
     return True

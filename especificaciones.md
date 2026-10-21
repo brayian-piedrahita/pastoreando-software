@@ -40,6 +40,15 @@ Usuario -> (API o CLI) -> Service -> Domain -> Infrastructure (repositorio) -> B
 | PUT, DELETE | /api/ganado/{id} | Arrendatario del contrato |
 | POST | /api/costos/calcular | Contador, Propietario, Arrendatario |
 | GET | /api/costos/historial | Contador, Propietario |
+| GET | /api/contratos/{id}/pagos | Quien puede ver el contrato |
+| POST | /api/contratos/{id}/pagos | Arrendatario del contrato (contrato activo) |
+| PUT | /api/pagos/{id}/estado | Propietario del lote o Contador (solo pagos Pendiente) |
+| GET | /api/ganado/{id}/recomendaciones | Quien puede ver el contrato del hato |
+| POST | /api/ganado/{id}/recomendaciones | Tecnico |
+| DELETE | /api/recomendaciones/{id} | Tecnico autor |
+| POST | /api/contratos/{id}/firma | Propietario del lote o Arrendatario del contrato |
+| GET | /api/contratos/{id}/firmas | Quien puede ver el contrato |
+| GET | /api/reportes/rentabilidad | Propietario (los suyos) y Contador (todos) |
 
 Contratos de entrada (CLI): python -m app.cli.menu con opciones 1 listar, 2 registrar,
 3 modificar, 4 eliminar lote y 5 calcular costo.
@@ -64,6 +73,13 @@ Contratos de entrada (CLI): python -m app.cli.menu con opciones 1 listar, 2 regi
   contrasena de 8 a 72 caracteres con letras y numeros, guardada solo como hash bcrypt.
   Propietario y Arrendatario se registran libremente; Tecnico y Contador requieren el codigo
   de profesional definido en PASTOREANDO_CODIGO_PROFESIONAL.
+- Pago: monto mayor a cero, fecha real, metodo Efectivo, Transferencia, PSE o Consignacion.
+  Nace Pendiente; el propietario del lote o el contador lo pasan a Confirmado o Rechazado una sola vez.
+- Recomendacion: texto de 10 a 500 caracteres sin etiquetas; solo la crea un Tecnico y solo su autor la elimina.
+- Firma: firman el propietario y el arrendatario, una vez cada uno, sobre la huella SHA-256 del texto
+  vigente. Si el ganado cambia, el texto cambia y las firmas anteriores dejan de estar vigentes.
+- Rentabilidad: costo estimado = ingreso total / (1 + 0.20); utilidad = ingreso - costo;
+  recaudado = suma de pagos Confirmados; saldo por cobrar = ingreso total - recaudado.
 - Hectareas, capacidad de carga, cantidad de cabezas y tarifa deben ser mayores a cero.
 
 ## 7. Criterios de aceptacion
@@ -73,8 +89,10 @@ Contratos de entrada (CLI): python -m app.cli.menu con opciones 1 listar, 2 regi
 4. Ningun dato invalido (fecha inexistente, numero negativo, texto con simbolos, longitud excedida) se guarda.
 5. Un arrendatario no puede ver ni modificar contratos de otro arrendatario.
 6. Un registro con datos validos crea el usuario y permite iniciar sesion; con correo o cedula repetidos responde 409.
-7. Todas las pruebas de la carpeta tests pasan y flake8 no reporta errores.
+8. Un pago Pendiente confirmado por el propietario aumenta el recaudado del reporte de rentabilidad.
+9. Las dos partes firman el contrato y la firma queda vigente mientras el texto no cambie.
+10. Todas las pruebas de la carpeta tests pasan y flake8 no reporta errores.
 
 ## 8. Fuera de alcance de este modulo
-Exportacion PDF y Excel (RF03, RF06), firma digital (RCO04), parcelacion (RF07), alarmas (RF08),
+Exportacion PDF y Excel (RF03, RF06), parcelacion (RF07), alarmas (RF08),
 recomendaciones (RF09), sincronizacion con IndexedDB (RNF01 parcial) y respaldos (RNF02).

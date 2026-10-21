@@ -61,3 +61,19 @@ class CostoEntrada(EsquemaBase):
     impuestos: Any = Field(None, examples=[1500000])
     cantidad_animales: Any = Field(None, examples=[50])
     proposito: Any = Field(None, examples=["Carne"])
+
+
+class PagoEntrada(EsquemaBase):
+    fecha_pago: Any = Field(None, examples=["2026-11-01"])
+    monto_total: Any = Field(None, examples=[2210000])
+    metodo_pago: Any = Field(None, examples=["Transferencia"])
+
+
+class EstadoPagoEntrada(EsquemaBase):
+    estado_pago: Any = Field(None, examples=["Confirmado"])
+
+
+class RecomendacionEntrada(EsquemaBase):
+    descripcion: Any = Field(
+        None, examples=["Rotar el hato cada 15 dias para recuperar el pasto."]
+    )

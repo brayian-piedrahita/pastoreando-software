@@ -71,3 +71,48 @@ CREATE TABLE IF NOT EXISTS HISTORIAL_COSTOS (
     CONSTRAINT fk_historial_usuario FOREIGN KEY (idUsuario)
         REFERENCES USUARIOS (idUsuario) ON DELETE RESTRICT ON UPDATE CASCADE
 );
+
+
+-- AA5-EV03: pagos del contrato, recomendaciones del tecnico y firmas (RF05, RF06).
+CREATE TABLE IF NOT EXISTS PAGOS (
+    idPago       INTEGER PRIMARY KEY AUTOINCREMENT,
+    idContrato   INTEGER NOT NULL,
+    fechaPago    TEXT NOT NULL,
+    montoTotal   REAL NOT NULL,
+    metodoPago   TEXT NOT NULL
+        CHECK (metodoPago IN ('Efectivo', 'Transferencia', 'PSE', 'Consignacion')),
+    estadoPago   TEXT NOT NULL DEFAULT 'Pendiente'
+        CHECK (estadoPago IN ('Pendiente', 'Confirmado', 'Rechazado')),
+    CONSTRAINT chk_pagos_monto CHECK (montoTotal > 0),
+    CONSTRAINT fk_pagos_contrato FOREIGN KEY (idContrato)
+        REFERENCES CONTRATOS (idContrato) ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- Las recomendaciones pertenecen al hato: si el hato se elimina, se van con el.
+CREATE TABLE IF NOT EXISTS RECOMENDACIONES (
+    idRecomendacion    INTEGER PRIMARY KEY AUTOINCREMENT,
+    idGanado           INTEGER NOT NULL,
+    idZootecnista      INTEGER NOT NULL,
+    fechaRecomendacion TEXT NOT NULL,
+    descripcion        TEXT NOT NULL,
+    CONSTRAINT fk_recomendaciones_ganado FOREIGN KEY (idGanado)
+        REFERENCES GANADO (idGanado) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_recomendaciones_tecnico FOREIGN KEY (idZootecnista)
+        REFERENCES USUARIOS (idUsuario) ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- Cada parte firma una sola vez; la huella es el SHA-256 del texto firmado.
+CREATE TABLE IF NOT EXISTS FIRMAS_CONTRATO (
+    idFirma         INTEGER PRIMARY KEY AUTOINCREMENT,
+    idContrato      INTEGER NOT NULL,
+    idUsuario       INTEGER NOT NULL,
+    rolFirmante     TEXT NOT NULL
+        CHECK (rolFirmante IN ('Propietario', 'Arrendatario')),
+    fechaFirma      TEXT NOT NULL,
+    huellaDocumento TEXT NOT NULL,
+    CONSTRAINT uq_firmas_contrato_usuario UNIQUE (idContrato, idUsuario),
+    CONSTRAINT fk_firmas_contrato FOREIGN KEY (idContrato)
+        REFERENCES CONTRATOS (idContrato) ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT fk_firmas_usuario FOREIGN KEY (idUsuario)
+        REFERENCES USUARIOS (idUsuario) ON DELETE RESTRICT ON UPDATE CASCADE
+);
