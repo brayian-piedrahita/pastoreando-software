@@ -104,3 +104,33 @@ def validar_correo(valor: object, campo: str = "correo") -> str:
     if not PATRON_CORREO.match(texto):
         raise ValidacionError("No es un correo válido", campo)
     return texto.lower()
+
+
+# Cedula colombiana: solo digitos, entre 6 y 12.
+PATRON_CEDULA = re.compile(r"^\d{6,12}$")
+# bcrypt solo procesa los primeros 72 bytes; mas largo se rechaza de entrada.
+MAXIMO_BYTES_CONTRASENA = 72
+
+
+def validar_cedula(valor: object, campo: str = "cedula") -> str:
+    """Valida que la cedula sean entre 6 y 12 digitos."""
+    texto = validar_texto(valor, campo, 6, 12, re.compile(r"^\S+$"))
+    if not PATRON_CEDULA.match(texto):
+        raise ValidacionError("Debe tener entre 6 y 12 dígitos", campo)
+    return texto
+
+
+def validar_contrasena_nueva(valor: object, campo: str = "contrasena") -> str:
+    """Valida la contrasena de un registro: 8+ caracteres, letras y numeros.
+
+    No se recorta ni se normaliza: se guarda exactamente lo que el usuario escribe.
+    """
+    if not isinstance(valor, str):
+        raise ValidacionError("Debe ser un texto", campo)
+    if len(valor) < 8:
+        raise ValidacionError("Debe tener al menos 8 caracteres", campo)
+    if len(valor.encode("utf-8")) > MAXIMO_BYTES_CONTRASENA:
+        raise ValidacionError("No puede superar 72 caracteres", campo)
+    if not re.search(r"[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]", valor) or not re.search(r"\d", valor):
+        raise ValidacionError("Debe combinar letras y números", campo)
+    return valor
