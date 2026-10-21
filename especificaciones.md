@@ -28,6 +28,7 @@ Usuario -> (API o CLI) -> Service -> Domain -> Infrastructure (repositorio) -> B
 ## 4. Contratos de entrada (API)
 | Metodo | Ruta | Rol permitido |
 |---|---|---|
+| POST | /api/auth/registro | Publico (Tecnico y Contador exigen codigo de profesional) |
 | POST | /api/auth/login | Publico |
 | GET | /api/lotes, /api/lotes/{id} | Todos los autenticados |
 | POST, PUT, DELETE | /api/lotes | Propietario del lote |
@@ -45,6 +46,9 @@ Contratos de entrada (CLI): python -m app.cli.menu con opciones 1 listar, 2 regi
 
 ## 5. Contratos de salida
 - Exito: JSON con diccionarios y listas, o 204 sin cuerpo al eliminar.
+- Registro correcto: 201 con {"mensaje": "Usuario registrado correctamente", "usuario": {...}} sin contrasena.
+- Login correcto: 200 con {"mensaje": "Autenticacion satisfactoria", "token": ..., "usuario": {...}}.
+- Login incorrecto: 401 con {"mensaje": "Error en la autenticacion", "detalle": ...}.
 - Error: JSON {"detalle": mensaje, "campo": nombre del campo o null}.
 - Codigos: 401 sin sesion o credenciales malas, 403 sin permiso, 404 no existe,
   409 conflicto (por ejemplo lote con contratos), 422 dato invalido.
@@ -56,6 +60,10 @@ Contratos de entrada (CLI): python -m app.cli.menu con opciones 1 listar, 2 regi
   por el factor de manejo del proposito (Carne 1.00, Leche 1.10, Doble Proposito 1.05),
   mas margen de utilidad del 20 %.
 - Valor mensual del contrato = cabezas por tarifa por cabeza. Valor total = mensual por meses.
+- Registro: nombre y apellidos solo letras; cedula de 6 a 12 digitos; correo valido y unico;
+  contrasena de 8 a 72 caracteres con letras y numeros, guardada solo como hash bcrypt.
+  Propietario y Arrendatario se registran libremente; Tecnico y Contador requieren el codigo
+  de profesional definido en PASTOREANDO_CODIGO_PROFESIONAL.
 - Hectareas, capacidad de carga, cantidad de cabezas y tarifa deben ser mayores a cero.
 
 ## 7. Criterios de aceptacion
@@ -64,7 +72,8 @@ Contratos de entrada (CLI): python -m app.cli.menu con opciones 1 listar, 2 regi
 3. Con 12.000.000 de costos y 50 animales de carne el costo por cabeza es 288.000.
 4. Ningun dato invalido (fecha inexistente, numero negativo, texto con simbolos, longitud excedida) se guarda.
 5. Un arrendatario no puede ver ni modificar contratos de otro arrendatario.
-6. Todas las pruebas de la carpeta tests pasan y flake8 no reporta errores.
+6. Un registro con datos validos crea el usuario y permite iniciar sesion; con correo o cedula repetidos responde 409.
+7. Todas las pruebas de la carpeta tests pasan y flake8 no reporta errores.
 
 ## 8. Fuera de alcance de este modulo
 Exportacion PDF y Excel (RF03, RF06), firma digital (RCO04), parcelacion (RF07), alarmas (RF08),
