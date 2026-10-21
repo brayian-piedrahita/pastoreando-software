@@ -73,3 +73,48 @@ CREATE TABLE HISTORIAL_COSTOS (
     CONSTRAINT fk_historial_usuario FOREIGN KEY (idUsuario)
         REFERENCES USUARIOS (idUsuario) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB;
+
+
+-- AA5-EV03: pagos del contrato, recomendaciones del tecnico y firmas (RF05, RF06).
+CREATE TABLE PAGOS (
+    idPago       INT AUTO_INCREMENT,
+    idContrato   INT NOT NULL,
+    fechaPago    DATE NOT NULL,
+    montoTotal   DECIMAL(14,2) NOT NULL,
+    metodoPago   ENUM('Efectivo','Transferencia','PSE','Consignacion') NOT NULL,
+    estadoPago   ENUM('Pendiente','Confirmado','Rechazado') NOT NULL DEFAULT 'Pendiente',
+    CONSTRAINT pk_pagos PRIMARY KEY (idPago),
+    CONSTRAINT chk_pagos_monto CHECK (montoTotal > 0),
+    CONSTRAINT fk_pagos_contrato FOREIGN KEY (idContrato)
+        REFERENCES CONTRATOS (idContrato) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB;
+
+-- Las recomendaciones pertenecen al hato: si el hato se elimina, se van con el.
+CREATE TABLE RECOMENDACIONES (
+    idRecomendacion    INT AUTO_INCREMENT,
+    idGanado           INT NOT NULL,
+    idZootecnista      INT NOT NULL,
+    fechaRecomendacion DATE NOT NULL,
+    descripcion        TEXT NOT NULL,
+    CONSTRAINT pk_recomendaciones PRIMARY KEY (idRecomendacion),
+    CONSTRAINT fk_recomendaciones_ganado FOREIGN KEY (idGanado)
+        REFERENCES GANADO (idGanado) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_recomendaciones_tecnico FOREIGN KEY (idZootecnista)
+        REFERENCES USUARIOS (idUsuario) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB;
+
+-- Cada parte firma una sola vez; la huella es el SHA-256 del texto firmado.
+CREATE TABLE FIRMAS_CONTRATO (
+    idFirma         INT AUTO_INCREMENT,
+    idContrato      INT NOT NULL,
+    idUsuario       INT NOT NULL,
+    rolFirmante     ENUM('Propietario','Arrendatario') NOT NULL,
+    fechaFirma      DATETIME NOT NULL,
+    huellaDocumento CHAR(64) NOT NULL,
+    CONSTRAINT pk_firmas PRIMARY KEY (idFirma),
+    CONSTRAINT uq_firmas_contrato_usuario UNIQUE (idContrato, idUsuario),
+    CONSTRAINT fk_firmas_contrato FOREIGN KEY (idContrato)
+        REFERENCES CONTRATOS (idContrato) ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT fk_firmas_usuario FOREIGN KEY (idUsuario)
+        REFERENCES USUARIOS (idUsuario) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB;

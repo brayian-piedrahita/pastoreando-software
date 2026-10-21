@@ -10,7 +10,16 @@ from fastapi.staticfiles import StaticFiles
 
 from app import config
 from app.api.errores import registrar_manejadores
-from app.api.routers import auth, contratos, costos, lotes
+from app.api.routers import (
+    auth,
+    contratos,
+    costos,
+    firmas,
+    lotes,
+    pagos,
+    recomendaciones,
+    reportes,
+)
 from app.infrastructure.datos_prueba import cargar_datos_prueba
 from app.infrastructure.db import iniciar_bd
 
@@ -30,7 +39,16 @@ app = FastAPI(
     lifespan=ciclo_de_vida,
 )
 registrar_manejadores(app)
-for modulo in (auth, lotes, contratos, costos):
+for modulo in (
+    auth,
+    lotes,
+    contratos,
+    costos,
+    pagos,
+    recomendaciones,
+    firmas,
+    reportes,
+):
     app.include_router(modulo.router)
 
 # El frontend se sirve desde la raiz para que el service worker cubra toda la PWA.
