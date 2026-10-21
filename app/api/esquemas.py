@@ -21,6 +21,17 @@ class LoginEntrada(EsquemaBase):
     contrasena: Any = Field(None, examples=["Pastoreando2026*"])
 
 
+class RegistroEntrada(EsquemaBase):
+    nombre: Any = Field(None, examples=["Ana"])
+    apellidos: Any = Field(None, examples=["Londoño Ruiz"])
+    cedula: Any = Field(None, examples=["1112223334"])
+    rol: Any = Field(None, examples=["Arrendatario"])
+    correo: Any = Field(None, examples=["ana.londono@pastoreando.co"])
+    contrasena: Any = Field(None, examples=["ClaveSegura2026"])
+    # Solo para Tecnico y Contador.
+    codigo_profesional: Any = Field(None, examples=[None])
+
+
 class LoteEntrada(EsquemaBase):
     nombre_lote: Any = Field(None, examples=["Potrero El Roble"])
     hectareas: Any = Field(None, examples=[10.5])

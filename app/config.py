@@ -44,5 +44,12 @@ BCRYPT_RONDAS = int(os.environ.get("PASTOREANDO_BCRYPT_RONDAS", "12"))
 # Margen de utilidad proyectado (RF06 y calculo del RF01).
 MARGEN_UTILIDAD = 0.20
 
+# Codigo que deben presentar los profesionales adjuntos (Tecnico y Contador) al
+# registrarse. Evita que cualquier persona se auto-asigne un rol con acceso
+# amplio; en produccion se define en el .env.
+CODIGO_PROFESIONAL = os.environ.get(
+    "PASTOREANDO_CODIGO_PROFESIONAL", "Profesional2026*"
+)
+
 # Contrasena de los usuarios de prueba que se cargan en una base vacia.
 CLAVE_USUARIOS_PRUEBA = "Pastoreando2026*"
