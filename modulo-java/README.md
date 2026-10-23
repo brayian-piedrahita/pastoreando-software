@@ -1,6 +1,6 @@
 # Pastoreando · Módulo Java de lotes
 
-Módulo en Java que gestiona los **lotes** de terreno que un propietario ofrece en arrendamiento y vigila su **carga animal** (RF04): cada lote muestra cuántas cabezas tiene hoy en contratos activos, qué porcentaje de su capacidad ocupa y si está en estado NORMAL, ALERTA o SOBRECARGA. Accede a MySQL con **JDBC** y expone un CRUD completo por consola.
+Módulo en Java que gestiona los **lotes** de terreno que un propietario ofrece en arrendamiento y vigila su **carga animal** (RF04): cada lote muestra cuántas cabezas tiene hoy en contratos activos, qué porcentaje de su capacidad ocupa y si está en estado NORMAL, ALERTA o SOBRECARGA. Accede a MySQL con **JDBC** y se usa de dos maneras: por **consola** (GA7 · AA2 · EV01) y como **aplicación web con servlets y JSP** sobre Apache Tomcat (GA7 · AA2 · EV02).
 
 Forma parte del proyecto Pastoreando (GA7 · AA2). Convive con la versión Python/FastAPI del repositorio: usa el mismo modelo de datos (`sql/esquema_mysql.sql`) y las mismas reglas de dominio.
 
@@ -11,12 +11,13 @@ Forma parte del proyecto Pastoreando (GA7 · AA2). Convive con la versión Pytho
 | JDK | 17 o superior (probado con Temurin 21) |
 | Maven | 3.9 o superior |
 | MySQL Server | 8.4 LTS |
+| Apache Tomcat | 10.1 o superior (Jakarta Servlet 6.0, JSP 3.1). No sirve Tomcat 9: usa el espacio de nombres `javax` |
 
 ## Estructura
 
 ```
 modulo-java/
-├── pom.xml                      Proyecto Maven (driver MySQL, JUnit 5)
+├── pom.xml                      Proyecto Maven (WAR: servlets, JSTL, driver MySQL, JUnit 5, Mockito)
 ├── config/db.properties.example Plantilla de la conexión (sin credenciales)
 ├── sql/
 │   ├── 01_esquema.sql           Base pastoreando: USUARIOS, LOTES, CONTRATOS, GANADO
@@ -28,11 +29,19 @@ modulo-java/
     │   ├── dao/                 ConexionBD (Singleton), LoteDAO, LoteDAOJdbc
     │   ├── controlador/         LoteControlador, ValidadorLote
     │   ├── vista/               MenuConsola
+    │   ├── web/                 ContextListener, filtros, SesionServlet, LoteServlet, FiltroLotes
     │   └── excepcion/           ValidacionException, ReglaNegocioException, AccesoDatosException
-    └── test/java/co/pastoreando/ Pruebas JUnit 5
+    ├── main/webapp/
+    │   ├── index.jsp            Punto de entrada: reenvía al ingreso o al tablero
+    │   ├── css/pastoreando.css  Estilos (paleta del proyecto, sin dependencias externas)
+    │   └── WEB-INF/
+    │       ├── web.xml          Descriptor: página de inicio, sesión y páginas de error
+    │       ├── vistas/          login.jsp, lotes.jsp, form.jsp, ficha.jsp, error.jsp
+    │       └── fragmentos/      cabecera.jspf, pie.jspf, utilidades.jspf, tarjetaLote.jsp
+    └── test/java/co/pastoreando/ Pruebas JUnit 5 (y Mockito para los servlets)
 ```
 
-Se sigue el patrón **MVC** con una capa DAO: la vista solo lee y muestra, el controlador valida y aplica las reglas del negocio, el DAO es el único que escribe SQL y el modelo no conoce a ninguno de los tres.
+Se sigue el patrón **MVC** con una capa DAO: la vista solo lee y muestra, el controlador valida y aplica las reglas del negocio, el DAO es el único que escribe SQL y el modelo no conoce a ninguno de los tres. En la versión web la vista son las páginas JSP, los servlets hacen de intermediarios (traducen parámetros HTTP y eligen la página) y `LoteControlador` es el mismo de la consola.
 
 ## Puesta en marcha
 
@@ -71,6 +80,75 @@ mvn test
 ```
 
 Las pruebas unitarias no necesitan base de datos. Las de integración (`LoteDAOJdbcIntegracionTest`) se omiten solas si MySQL o `db.properties` no están disponibles.
+
+
+## Aplicación web (servlets y JSP)
+
+La misma lógica de la consola se publica como aplicación web. El navegador nunca llega al controlador directamente: cada petición pasa por un servlet, que llama a `LoteControlador` y reenvía el resultado a una página JSP ubicada en `WEB-INF` (no accesible por URL directa).
+
+### Compilar y desplegar
+
+Desde la carpeta `modulo-java`:
+
+```
+mvn clean package
+```
+
+Genera `target/pastoreando.war`. Para desplegarlo en Tomcat 10.1 (con `JAVA_HOME` apuntando al JDK):
+
+```
+cp target/pastoreando.war <carpeta-de-tomcat>/webapps/
+<carpeta-de-tomcat>/bin/catalina.bat run
+```
+
+Tomcat descomprime el WAR y la aplicación queda en **http://localhost:8080/pastoreando/**. La conexión a MySQL usa el mismo `~/.pastoreando/db.properties` de la consola; si el archivo falta, la aplicación arranca igual y muestra el motivo en la pantalla de error en lugar de fallar el despliegue.
+
+### Rutas, GET y POST
+
+| Ruta | Método | Acción | Resultado |
+|---|---|---|---|
+| `/sesion` | GET | formulario de ingreso (`?accion=salir` cierra la sesión) | login.jsp |
+| `/sesion` | POST | valida el propietario y abre la sesión | redirect a `/lotes` |
+| `/lotes` | GET | listar (por defecto) con filtros `estado` y `q` | lotes.jsp |
+| `/lotes?accion=nuevo` | GET | formulario vacío | form.jsp |
+| `/lotes?accion=editar&idLote=N` | GET | formulario con los datos del lote | form.jsp |
+| `/lotes?accion=ver&idLote=N` | GET | ficha de monitoreo con la alerta de carga | ficha.jsp |
+| `/lotes?accion=eliminar&idLote=N` | GET | pantalla de confirmación (no borra nada) | ficha.jsp |
+| `/lotes` | POST `accion=crear` | registra el lote | redirect a la ficha |
+| `/lotes` | POST `accion=actualizar` | guarda los cambios | redirect a la ficha |
+| `/lotes` | POST `accion=eliminar` | elimina el lote | redirect a `/lotes` |
+
+Criterio: **GET** solo consulta (los filtros quedan en la URL y se pueden compartir); **POST** modifica datos, por eso viaja en el cuerpo de la petición. Después de cada POST el servlet responde con un redirect (patrón Post-Redirect-Get) y deja el resultado en la sesión como mensaje de una sola lectura, así recargar la página no repite la operación. Si una validación falla, el formulario vuelve con lo escrito y el campo marcado.
+
+### Servlets, filtros y listener
+
+| Clase | Tipo | Función |
+|---|---|---|
+| `ContextListener` | `ServletContextListener` | Al desplegar, arma el controlador una sola vez y lo comparte por el contexto |
+| `CodificacionFilter` | `Filter` (`/*`) | Fija UTF-8 antes de leer los parámetros |
+| `SesionFilter` | `Filter` (`/lotes`) | Solo deja pasar a quien ya se identificó como propietario |
+| `SesionServlet` | `HttpServlet` (`/sesion`) | Ingreso y salida; descarta la sesión anterior al ingresar |
+| `LoteServlet` | `HttpServlet` (`/lotes`) | Listar, ver, crear, actualizar y eliminar lotes |
+
+### Elementos JSP utilizados
+
+| Elemento | Dónde |
+|---|---|
+| Directiva `page` (`contentType`, `import`, `errorPage`, `isErrorPage`, `trimDirectiveWhitespaces`) | todas las páginas |
+| Directiva `taglib` (JSTL `core` y `fmt`) | todas las páginas |
+| Directiva `include` (en tiempo de traducción) | `cabecera.jspf`, `pie.jspf` y `utilidades.jspf` |
+| Declaración `<%! %>` | `utilidades.jspf`: `claseEstado()`, `ahora()` y la constante de formato |
+| Scriptlet `<% %>` | `lotes.jsp` (suma de cabezas), `tarjetaLote.jsp` y `ficha.jsp` |
+| Expresión `<%= %>` | número de lotes y cabezas mostrados, clase de color, fecha del pie |
+| Acciones estándar | `jsp:include` con `jsp:param` (tarjeta de cada lote) y `jsp:forward` (`index.jsp`) |
+| EL y JSTL | `c:out` (escapa todo dato del usuario), `c:if`, `c:choose`, `c:forEach`, `fmt:formatNumber` |
+| Comentarios JSP `<%-- --%>` | no llegan al navegador |
+
+Las páginas usan EL y JSTL para casi todo; el Java embebido (declaración, scriptlet y expresión) se limita a la lógica pequeña que la vista necesita.
+
+### Pruebas de la capa web
+
+Los servlets, los filtros y el listener se prueban con JUnit 5 y objetos simulados de Mockito, sin levantar Tomcat; `FiltroLotes`, `DatosLote` y `MensajeFlash` se prueban directamente. `mvn test` ejecuta en total las pruebas de la consola y de la web.
 
 ## Datos de prueba y resultado esperado
 
@@ -115,6 +193,9 @@ Flujo que sigue cada operación del DAO:
 | Métodos | camelCase, verbo | `registrarLote`, `buscarPorId` |
 | Variables y atributos | camelCase, nombre descriptivo | `idPropietario`, `cabezasActuales` |
 | Constantes | MAYÚSCULAS con guion bajo | `UMBRAL_ALERTA`, `SQL_INSERTAR` |
+| Servlets, filtros y listeners | PascalCase con el tipo como sufijo | `LoteServlet`, `SesionFilter`, `ContextListener` |
+| Páginas JSP y fragmentos | camelCase; `.jsp` para páginas y `.jspf` para fragmentos que se incluyen | `lotes.jsp`, `cabecera.jspf` |
+| Parámetros HTTP y atributos de request | camelCase, igual que los campos del modelo | `nombreLote`, `capacidadCarga`, `accion` |
 | Pruebas | clase terminada en `Test`; método que describe el comportamiento | `CargaLoteTest.clasificaElEstadoEnLosLimites` |
 
 Reglas adicionales:
@@ -129,6 +210,6 @@ Reglas adicionales:
 
 ## Control de versiones
 
-Flujo Git Flow del proyecto: la entrega se desarrolla en `feature/aa2-ev01` y se marca con la etiqueta `aa2-ev01`. La integración a `develop` y `main` se hace después mediante pull request.
+Flujo Git Flow del proyecto: la consola se desarrolló en `feature/aa2-ev01` (etiqueta `aa2-ev01`) y la aplicación web en `feature/aa2-ev02` (etiqueta `aa2-ev02`), que parte de `develop` e incorpora la rama anterior. La integración a `develop` y `main` se hace después mediante pull request.
 
 Commits por capa, con el prefijo del tipo de cambio (`feat`, `test`, `docs`, `build`).
