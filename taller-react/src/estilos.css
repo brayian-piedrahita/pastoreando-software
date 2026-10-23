@@ -1,0 +1,182 @@
+/* Estilos del taller. Mobile-first: se disena para el celular y se amplia en pantallas grandes.
+   Paleta corporativa de Pastoreando. */
+:root {
+  --verde: #4caf50;
+  --verde-oscuro: #2e7d32;
+  --rojo: #f44336;
+  --naranja: #ef6c00;
+  --fondo: #f5f5f5;
+  --texto: #212121;
+  --borde: #cfd8dc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--texto);
+  background: var(--fondo);
+}
+
+.cabecera {
+  padding: 1rem;
+  color: #fff;
+  background: var(--verde-oscuro);
+}
+
+.cabecera h1,
+.cabecera p {
+  margin: 0;
+}
+
+.contenido {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.contenido section {
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  border-bottom: 3px solid var(--verde);
+  padding-bottom: 0.25rem;
+}
+
+/* Botones y campos: objetivos tactiles de al menos 44 px */
+button,
+input,
+select {
+  min-height: 44px;
+  margin: 0.25rem 0.25rem 0.25rem 0;
+  padding: 0.4rem 0.8rem;
+  font-size: 1rem;
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+}
+
+button {
+  cursor: pointer;
+  background: #fff;
+}
+
+button[aria-pressed="true"],
+.boton-principal {
+  color: #fff;
+  background: var(--verde);
+  border-color: var(--verde-oscuro);
+}
+
+label {
+  display: block;
+  margin-top: 0.5rem;
+  font-weight: bold;
+}
+
+.par {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.tarjeta-lote,
+.medidor,
+.laboratorio,
+.formulario,
+.demo-error {
+  padding: 0.75rem;
+  background: #fff;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+}
+
+.tarjeta-lote h3,
+.medidor h3 {
+  margin: 0 0 0.25rem;
+}
+
+.insignia {
+  display: inline-block;
+  padding: 0.1rem 0.6rem;
+  color: #fff;
+  font-size: 0.85rem;
+  border-radius: 999px;
+}
+
+.insignia-normal {
+  background: var(--verde-oscuro);
+}
+
+.insignia-alerta {
+  background: var(--naranja);
+}
+
+.insignia-sobrecarga {
+  background: var(--rojo);
+}
+
+.medidor-normal {
+  border-left: 6px solid var(--verde);
+}
+
+.medidor-alerta {
+  border-left: 6px solid var(--naranja);
+}
+
+.medidor-sobrecarga {
+  border-left: 6px solid var(--rojo);
+}
+
+.lista-lotes ul {
+  display: grid;
+  gap: 0.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.zona-eventos {
+  margin: 0.75rem 0;
+  padding: 1rem;
+  text-align: center;
+  background: var(--fondo);
+  border: 2px dashed var(--verde);
+  border-radius: 8px;
+}
+
+.registro-eventos {
+  padding-left: 1.25rem;
+}
+
+.franja-sin-conexion,
+.aviso-error,
+.error-campo {
+  color: #fff;
+  background: var(--rojo);
+}
+
+.franja-sin-conexion {
+  padding: 0.6rem 1rem;
+  text-align: center;
+}
+
+.aviso-error {
+  padding: 0.75rem;
+  border-radius: 6px;
+}
+
+.error-campo {
+  display: inline-block;
+  margin: 0.25rem 0 0;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.9rem;
+  border-radius: 4px;
+}
+
+@media (min-width: 48rem) {
+  .par {
+    grid-template-columns: 1fr 1fr;
+  }
+}
