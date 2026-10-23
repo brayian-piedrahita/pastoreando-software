@@ -1,0 +1,197 @@
+/* Pastoreando - estilos del modulo web de lotes.
+   Paleta del proyecto: verde #4CAF50 (acciones), rojo #F44336 (sobrecarga), fondo #F5F5F5.
+   El naranja se usa solo para el estado ALERTA. Sin dependencias externas: funciona sin internet. */
+
+:root {
+    --verde: #4CAF50;
+    --verde-oscuro: #388E3C;
+    --rojo: #F44336;
+    --naranja: #FB8C00;
+    --fondo: #F5F5F5;
+    --texto: #263238;
+    --texto-suave: #607D8B;
+    --borde: #E0E0E0;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    background: var(--fondo);
+    color: var(--texto);
+    line-height: 1.45;
+}
+
+a { color: var(--verde-oscuro); }
+
+/* ---- Cabecera y estructura ---- */
+.barra {
+    background: var(--verde);
+    color: #fff;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.barra .marca { font-size: 1.2rem; font-weight: 600; text-decoration: none; color: #fff; }
+.barra .usuario { font-size: 0.9rem; }
+.barra .usuario a { color: #fff; margin-left: 0.75rem; }
+
+main { max-width: 1000px; margin: 0 auto; padding: 1rem; }
+h1 { font-size: 1.5rem; margin: 0.5rem 0 1rem; }
+
+.pie {
+    max-width: 1000px;
+    margin: 1rem auto 2rem;
+    padding: 0 1rem;
+    font-size: 0.8rem;
+    color: var(--texto-suave);
+}
+
+/* ---- Tarjetas y mensajes ---- */
+.tarjeta {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+    padding: 1rem;
+}
+
+.mensaje {
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    border-left: 5px solid;
+}
+.mensaje-exito { background: #E8F5E9; border-color: var(--verde); }
+.mensaje-error { background: #FDECEA; border-color: var(--rojo); }
+.mensaje-aviso { background: #FFF3E0; border-color: var(--naranja); }
+
+/* ---- Resumen del tablero ---- */
+.resumen {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+.dato { text-align: center; }
+.dato strong { display: block; font-size: 1.8rem; }
+.dato span { font-size: 0.85rem; color: var(--texto-suave); }
+.dato.normal strong { color: var(--verde-oscuro); }
+.dato.alerta strong { color: var(--naranja); }
+.dato.sobrecarga strong { color: var(--rojo); }
+
+/* ---- Formularios ---- */
+form.filtros {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.25rem; }
+input[type=text], select {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid #B0BEC5;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: #fff;
+}
+input.invalido { border-color: var(--rojo); background: #FFF8F7; }
+.error-campo { color: var(--rojo); font-size: 0.85rem; margin-top: 0.25rem; }
+.ayuda { color: var(--texto-suave); font-size: 0.8rem; margin-top: 0.25rem; }
+.campo { margin-bottom: 1rem; }
+
+.boton {
+    display: inline-block;
+    border: 0;
+    border-radius: 6px;
+    padding: 0.65rem 1.1rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    background: var(--verde);
+    color: #fff;
+}
+.boton:hover { background: var(--verde-oscuro); }
+.boton-secundario { background: #fff; color: var(--verde-oscuro); border: 1px solid var(--verde); }
+.boton-secundario:hover { background: #E8F5E9; }
+.boton-peligro { background: var(--rojo); }
+.boton-peligro:hover { background: #D32F2F; }
+.acciones { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
+.acciones form { margin: 0; }
+
+/* ---- Lista de lotes ---- */
+.lista-lotes { display: grid; grid-template-columns: 1fr; gap: 0.75rem; }
+.lote h2 { font-size: 1.1rem; margin: 0 0 0.25rem; }
+.lote .numero { color: var(--texto-suave); font-weight: 400; }
+.lote .detalle { color: var(--texto-suave); font-size: 0.85rem; margin-bottom: 0.6rem; }
+.etiqueta {
+    display: inline-block;
+    border-radius: 12px;
+    padding: 0.1rem 0.7rem;
+    margin-left: 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #fff;
+}
+.estado-normal { background: var(--verde); }
+.estado-alerta { background: var(--naranja); }
+.estado-sobrecarga { background: var(--rojo); }
+
+.barra-carga { background: #ECEFF1; border-radius: 6px; height: 12px; overflow: hidden; margin: 0.5rem 0; }
+.barra-carga div { height: 100%; }
+.barra-carga .estado-normal { background: var(--verde); }
+.barra-carga .estado-alerta { background: var(--naranja); }
+.barra-carga .estado-sobrecarga { background: var(--rojo); }
+
+.vacio { text-align: center; color: var(--texto-suave); padding: 2rem 1rem; }
+
+/* ---- Ficha de un lote (indicador circular) ---- */
+.ficha { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+.indicador {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.indicador.estado-normal { background: conic-gradient(var(--verde) calc(var(--p) * 1%), #ECEFF1 0); }
+.indicador.estado-alerta { background: conic-gradient(var(--naranja) calc(var(--p) * 1%), #ECEFF1 0); }
+.indicador.estado-sobrecarga { background: conic-gradient(var(--rojo) calc(var(--p) * 1%), #ECEFF1 0); }
+.indicador div {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.indicador strong { font-size: 1.8rem; }
+.indicador span { font-size: 0.8rem; color: var(--texto-suave); }
+
+table.datos { width: 100%; border-collapse: collapse; }
+table.datos th { text-align: left; width: 45%; color: var(--texto-suave); font-weight: 600; }
+table.datos th, table.datos td { padding: 0.45rem 0.25rem; border-bottom: 1px solid var(--borde); }
+
+.alerta-ambiental { border-radius: 6px; padding: 0.75rem 1rem; margin: 1rem 0 0; color: #fff; }
+.alerta-ambiental.estado-normal { background: var(--verde); }
+.alerta-ambiental.estado-alerta { background: var(--naranja); }
+.alerta-ambiental.estado-sobrecarga { background: var(--rojo); }
+
+.confirmacion { border: 2px solid var(--rojo); }
+
+/* ---- Pantallas medianas y grandes ---- */
+@media (min-width: 700px) {
+    .resumen { grid-template-columns: repeat(4, 1fr); }
+    form.filtros { grid-template-columns: 2fr 1fr auto; align-items: end; }
+    .lista-lotes { grid-template-columns: repeat(2, 1fr); }
+    .ficha { grid-template-columns: 220px 1fr; align-items: center; }
+}

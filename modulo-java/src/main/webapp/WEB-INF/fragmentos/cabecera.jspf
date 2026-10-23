@@ -1,0 +1,23 @@
+<%-- Cabecera comun. Se incorpora con la directiva include, en tiempo de traduccion: la pagina que la
+     usa debe declarar antes la libreria c y definir la variable tituloPagina. --%>
+<%@ include file="/WEB-INF/fragmentos/utilidades.jspf" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><c:out value="${tituloPagina}"/> | Pastoreando</title>
+    <link rel="stylesheet" href="${ctx}/css/pastoreando.css">
+</head>
+<body>
+<header class="barra">
+    <a class="marca" href="${ctx}/">Pastoreando | Gestion de lotes</a>
+    <c:if test="${not empty sessionScope.idPropietario}">
+        <div class="usuario">
+            Propietario <c:out value="${sessionScope.idPropietario}"/>
+            <a href="${ctx}/sesion?accion=salir">Salir</a>
+        </div>
+    </c:if>
+</header>
+<main>

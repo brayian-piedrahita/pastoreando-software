@@ -1,0 +1,7 @@
+<%-- Pie comun. Usa la declaracion ahora() de utilidades.jspf, que la cabecera ya incorporo. --%>
+</main>
+<footer class="pie">
+    Pastoreando | SENA ADSO ficha 3134556 | Pagina generada el <%= ahora() %>
+</footer>
+</body>
+</html>

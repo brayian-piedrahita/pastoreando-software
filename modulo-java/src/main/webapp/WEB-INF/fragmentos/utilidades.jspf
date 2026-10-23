@@ -1,0 +1,24 @@
+<%@ page import="co.pastoreando.modelo.EstadoCarga" %>
+<%-- Declaraciones compartidas: pasan a ser miembros de la clase que Tomcat genera para cada pagina. --%>
+<%!
+    /** Formato de la fecha y hora del pie de pagina. */
+    private static final java.time.format.DateTimeFormatter FORMATO_FECHA =
+            java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+
+    /** Clase CSS que colorea el lote segun su estado de carga (RF04). */
+    private String claseEstado(EstadoCarga estado) {
+        switch (estado) {
+            case SOBRECARGA:
+                return "estado-sobrecarga";
+            case ALERTA:
+                return "estado-alerta";
+            default:
+                return "estado-normal";
+        }
+    }
+
+    /** Fecha y hora actuales con el formato del pie de pagina. */
+    private String ahora() {
+        return java.time.LocalDateTime.now().format(FORMATO_FECHA);
+    }
+%>
