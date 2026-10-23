@@ -1,0 +1,12 @@
+# Plantilla de configuracion de la conexion a MySQL (modulo Java de Pastoreando).
+#
+# 1. Copie este archivo como:  <carpeta personal>/.pastoreando/db.properties
+#    (en Windows: C:\Users\<usuario>\.pastoreando\db.properties)
+# 2. Escriba su contrasena real en db.clave.
+# 3. No suba el archivo real al repositorio: contiene credenciales.
+#
+# Tambien puede indicar otra ruta al ejecutar con -Dpastoreando.config=<ruta>
+
+db.url=jdbc:mysql://localhost:3306/pastoreando?allowPublicKeyRetrieval=true
+db.usuario=root
+db.clave=

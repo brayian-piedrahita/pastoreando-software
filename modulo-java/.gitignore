@@ -1,0 +1,5 @@
+# Compilados de Maven
+target/
+
+# Credenciales reales: solo se versiona la plantilla db.properties.example
+db.properties
