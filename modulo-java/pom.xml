@@ -7,16 +7,20 @@
     <groupId>co.pastoreando</groupId>
     <artifactId>pastoreando-modulo-java</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>Pastoreando - Modulo Java (Lotes)</name>
-    <description>Gestion de lotes con alerta de carga animal (RF04) sobre MySQL con JDBC.</description>
+    <description>Gestion de lotes con alerta de carga animal (RF04): consola con JDBC (EV01) y aplicacion web con servlets y JSP (EV02).</description>
 
     <properties>
         <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <mysql.connector.version>8.4.0</mysql.connector.version>
         <junit.version>5.10.2</junit.version>
+        <mockito.version>5.11.0</mockito.version>
+        <servlet.api.version>6.0.0</servlet.api.version>
+        <jstl.api.version>3.0.0</jstl.api.version>
+        <jstl.impl.version>3.0.1</jstl.impl.version>
     </properties>
 
     <dependencies>
@@ -28,15 +32,45 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- API de servlets y JSP: la aporta Tomcat 10.1 al ejecutar, por eso solo se usa para compilar -->
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>${servlet.api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- JSTL (jakarta.tags): Tomcat no la incluye, viaja dentro del WAR en WEB-INF/lib -->
+        <dependency>
+            <groupId>jakarta.servlet.jsp.jstl</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+            <version>${jstl.api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.web</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+            <version>${jstl.impl.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- Objetos simulados de peticion y respuesta para probar los servlets sin Tomcat -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
+        <!-- El WAR se llama pastoreando.war: la aplicacion queda en http://localhost:8080/pastoreando/ -->
+        <finalName>pastoreando</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -47,6 +81,11 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.4.0</version>
             </plugin>
             <!-- Permite ejecutar la consola con: mvn compile exec:java -->
             <plugin>
