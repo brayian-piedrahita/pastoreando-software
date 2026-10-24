@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { CLAVES, guardar, leer } from "../servicios/almacenLocal.js";
-import { ErrorApi, ErrorRed, EVENTO_SESION_EXPIRADA, solicitar } from "../servicios/clienteApi.js";
+import { ErrorApi, ErrorRed, EVENTO_SESION_EXPIRADA, solicitar, solicitarArchivo } from "../servicios/clienteApi.js";
 import { SESION_PROPIETARIO, simularApi } from "./datos.js";
 
 beforeEach(() => window.localStorage.clear());
@@ -64,5 +64,41 @@ describe("solicitar", () => {
     await solicitar("/api/auth/login", { metodo: "POST", cuerpo: {}, conSesion: false }).catch(() => {});
     window.removeEventListener(EVENTO_SESION_EXPIRADA, aviso);
     expect(aviso).not.toHaveBeenCalled();
+  });
+});
+
+describe("solicitarArchivo", () => {
+  it("devuelve el contenido y el nombre que propone la API, enviando el token", async () => {
+    guardar(CLAVES.SESION, SESION_PROPIETARIO);
+    const fetchSimulado = simularApi({
+      "GET /api/archivo": { cuerpo: "contenido", cabeceras: { "Content-Disposition": 'attachment; filename="reporte.pdf"' } },
+    });
+    const { blob, nombre } = await solicitarArchivo("/api/archivo");
+    expect(nombre).toBe("reporte.pdf");
+    expect(await blob.text()).toBe("contenido");
+    expect(fetchSimulado.mock.calls[0][1].headers.Authorization).toBe("Bearer token-de-prueba");
+  });
+
+  it("usa un nombre general si la API no propone ninguno", async () => {
+    simularApi({ "GET /api/archivo": { cuerpo: "x" } });
+    expect((await solicitarArchivo("/api/archivo")).nombre).toBe("reporte");
+  });
+
+  it("traduce el error de la API a ErrorApi y la falta de red a ErrorRed", async () => {
+    simularApi({ "GET /api/archivo": { estado: 403, cuerpo: { detalle: "No tiene permiso", campo: null } } });
+    await expect(solicitarArchivo("/api/archivo")).rejects.toMatchObject({ estado: 403, detalle: "No tiene permiso" });
+    simularApi({ RED_CAIDA: true });
+    await expect(solicitarArchivo("/api/archivo")).rejects.toBeInstanceOf(ErrorRed);
+  });
+
+  it("un 401 con sesion borra el token y avisa con un evento", async () => {
+    guardar(CLAVES.SESION, SESION_PROPIETARIO);
+    simularApi({ "GET /api/archivo": { estado: 401, cuerpo: { detalle: "Token vencido", campo: null } } });
+    const aviso = vi.fn();
+    window.addEventListener(EVENTO_SESION_EXPIRADA, aviso);
+    await solicitarArchivo("/api/archivo").catch(() => {});
+    window.removeEventListener(EVENTO_SESION_EXPIRADA, aviso);
+    expect(aviso).toHaveBeenCalledTimes(1);
+    expect(leer(CLAVES.SESION)).toBeNull();
   });
 });

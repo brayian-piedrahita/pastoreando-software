@@ -422,6 +422,46 @@ describe("reportes financieros", () => {
     expect(leer(CLAVES.REPORTE).datos.totales.recaudado).toBe(4370000);
   });
 
+  it("descarga el reporte en PDF y en Excel y entrega el archivo con el nombre de la API", async () => {
+    entrarComo(USUARIO_PROPIETARIO);
+    const api = simularApi(rutasContrato1());
+    URL.createObjectURL = vi.fn(() => "blob:prueba");
+    URL.revokeObjectURL = vi.fn();
+    const pulsar = vi.spyOn(HTMLAnchorElement.prototype, "click").mockImplementation(() => {});
+    dibujarApp("/reportes");
+    await userEvent.click(await screen.findByRole("button", { name: "DESCARGAR PDF" }));
+    await waitFor(() => expect(pulsar).toHaveBeenCalledTimes(1));
+    expect(pulsar.mock.contexts[0].download).toBe("reporte_rentabilidad_20261024.pdf");
+    expect(llamadas(api, "GET", "/api/reportes/rentabilidad/pdf")).toHaveLength(1);
+    await userEvent.click(screen.getByRole("button", { name: "DESCARGAR EXCEL" }));
+    await waitFor(() => expect(pulsar).toHaveBeenCalledTimes(2));
+    expect(pulsar.mock.contexts[1].download).toBe("reporte_rentabilidad_20261024.xlsx");
+    pulsar.mockRestore();
+  });
+
+  it("si la API rechaza la descarga muestra el motivo y no guarda nada", async () => {
+    entrarComo(USUARIO_PROPIETARIO);
+    simularApi(rutasContrato1({
+      "GET /api/reportes/rentabilidad/pdf": { estado: 403, cuerpo: { detalle: "No tiene permiso para esta operación", campo: null } },
+    }));
+    const pulsar = vi.spyOn(HTMLAnchorElement.prototype, "click").mockImplementation(() => {});
+    dibujarApp("/reportes");
+    await userEvent.click(await screen.findByRole("button", { name: "DESCARGAR PDF" }));
+    expect(await screen.findByText("No tiene permiso para esta operación")).toBeInTheDocument();
+    expect(pulsar).not.toHaveBeenCalled();
+    pulsar.mockRestore();
+  });
+
+  it("sin red las descargas quedan deshabilitadas porque el archivo sale de datos vigentes", async () => {
+    entrarComo(USUARIO_CONTADOR);
+    guardar(CLAVES.REPORTE, { idUsuario: 4, datos: rutasContrato1()["GET /api/reportes/rentabilidad"].cuerpo });
+    simularApi({ RED_CAIDA: true });
+    dibujarApp("/reportes");
+    await screen.findByText(/Datos guardados en este dispositivo/);
+    expect(screen.getByRole("button", { name: "DESCARGAR PDF" })).toBeDisabled();
+    expect(screen.getByRole("button", { name: "DESCARGAR EXCEL" })).toBeDisabled();
+  });
+
   it("sin red usa el ultimo reporte guardado", async () => {
     entrarComo(USUARIO_CONTADOR);
     guardar(CLAVES.REPORTE, { idUsuario: 4, datos: rutasContrato1()["GET /api/reportes/rentabilidad"].cuerpo });

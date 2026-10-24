@@ -10,7 +10,7 @@ import { listarPagos, registrarPago, resolverPago } from "../servicios/servicioP
 import {
   crearRecomendacion, eliminarRecomendacion, listarRecomendaciones,
 } from "../servicios/servicioRecomendaciones.js";
-import { obtenerRentabilidad } from "../servicios/servicioReportes.js";
+import { descargarReporte, obtenerRentabilidad } from "../servicios/servicioReportes.js";
 import { CONTRATOS, DOCUMENTO, PAGOS, REPORTE, SESION_PROPIETARIO, simularApi } from "./datos.js";
 
 beforeEach(() => {
@@ -96,5 +96,20 @@ describe("servicioFirmas, servicioRecomendaciones y servicioReportes", () => {
   it("pide el reporte de rentabilidad", async () => {
     simularApi({ "GET /api/reportes/rentabilidad": { cuerpo: REPORTE } });
     expect((await obtenerRentabilidad()).totales.ingreso_total).toBe(21900000);
+  });
+
+  it("descarga el reporte en PDF y en Excel con la ruta de cada formato", async () => {
+    const api = simularApi({
+      "GET /api/reportes/rentabilidad/pdf": {
+        cuerpo: "%PDF", cabeceras: { "Content-Disposition": 'attachment; filename="reporte.pdf"' },
+      },
+      "GET /api/reportes/rentabilidad/excel": {
+        cuerpo: "xlsx", cabeceras: { "Content-Disposition": 'attachment; filename="reporte.xlsx"' },
+      },
+    });
+    expect((await descargarReporte("pdf")).nombre).toBe("reporte.pdf");
+    expect(ultimaLlamada(api).url).toBe("/api/reportes/rentabilidad/pdf");
+    expect((await descargarReporte("excel")).nombre).toBe("reporte.xlsx");
+    expect(ultimaLlamada(api).url).toBe("/api/reportes/rentabilidad/excel");
   });
 });

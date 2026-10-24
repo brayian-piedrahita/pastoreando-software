@@ -69,8 +69,14 @@ export function simularApi(rutas) {
     const clave = `${opciones.method ?? "GET"} ${url}`;
     const entrada = rutas[clave];
     const respuesta = typeof entrada === "function" ? entrada(opciones) : entrada;
-    const { estado = 200, cuerpo = {} } = respuesta ?? { estado: 404, cuerpo: { detalle: "No encontrado", campo: null } };
-    return { ok: estado >= 200 && estado < 300, status: estado, json: async () => cuerpo };
+    const { estado = 200, cuerpo = {}, cabeceras = {} } = respuesta ?? { estado: 404, cuerpo: { detalle: "No encontrado", campo: null } };
+    return {
+      ok: estado >= 200 && estado < 300,
+      status: estado,
+      json: async () => cuerpo,
+      headers: { get: (nombre) => cabeceras[nombre] ?? null },
+      blob: async () => new Blob([typeof cuerpo === "string" ? cuerpo : JSON.stringify(cuerpo)]),
+    };
   });
   vi.stubGlobal("fetch", fetchSimulado);
   return fetchSimulado;
@@ -150,6 +156,12 @@ export function rutasContrato1(extra = {}) {
     "GET /api/ganado/1/recomendaciones": { cuerpo: RECOMENDACIONES },
     "GET /api/ganado/5/recomendaciones": { cuerpo: [] },
     "GET /api/reportes/rentabilidad": { cuerpo: REPORTE },
+    "GET /api/reportes/rentabilidad/pdf": {
+      cuerpo: "%PDF-simulado", cabeceras: { "Content-Disposition": 'attachment; filename="reporte_rentabilidad_20261024.pdf"' },
+    },
+    "GET /api/reportes/rentabilidad/excel": {
+      cuerpo: "xlsx-simulado", cabeceras: { "Content-Disposition": 'attachment; filename="reporte_rentabilidad_20261024.xlsx"' },
+    },
     "GET /api/lotes": { cuerpo: LOTES },
     ...extra,
   };

@@ -1,6 +1,7 @@
 // Validaciones, permisos y formatos de los modulos de contratos, ganado, pagos y recomendaciones.
 
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
+import { guardarArchivo } from "../utilidades/descargas.js";
 import { formatoFecha, formatoFechaHora } from "../utilidades/formato.js";
 import {
   puedeFirmar, puedeRecomendar, puedeRegistrarGanado, puedeRegistrarPago, puedeResolverPagos, puedeVerReportes,
@@ -101,5 +102,21 @@ describe("formatoFecha", () => {
     expect(formatoFechaHora("2026-10-24T09:15:00")).toMatch(/24 de octubre de 2026/);
     expect(formatoFechaHora("2026-10-24")).toBe("24 de octubre de 2026");
     expect(formatoFechaHora("2026-99-99T99:99:99")).toBe("—");
+  });
+});
+
+describe("guardarArchivo", () => {
+  it("crea un enlace temporal con el nombre indicado, lo pulsa y lo libera", () => {
+    URL.createObjectURL = vi.fn(() => "blob:prueba");
+    URL.revokeObjectURL = vi.fn();
+    const pulsar = vi.spyOn(HTMLAnchorElement.prototype, "click").mockImplementation(() => {});
+    const blob = new Blob(["x"]);
+    guardarArchivo(blob, "reporte.pdf");
+    expect(URL.createObjectURL).toHaveBeenCalledWith(blob);
+    expect(pulsar).toHaveBeenCalledTimes(1);
+    expect(pulsar.mock.contexts[0].download).toBe("reporte.pdf");
+    expect(URL.revokeObjectURL).toHaveBeenCalledWith("blob:prueba");
+    expect(document.querySelector("a[download]")).toBeNull();
+    pulsar.mockRestore();
   });
 });
