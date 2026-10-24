@@ -28,8 +28,24 @@ def _cargar_archivo_env() -> None:
 
 _cargar_archivo_env()
 
+# Motor de base de datos: "sqlite" (desarrollo y pruebas) o "mysql" (servidor).
+MOTOR_BD = os.environ.get("PASTOREANDO_MOTOR", "sqlite").strip().lower()
+if MOTOR_BD not in ("sqlite", "mysql"):
+    raise ValueError("PASTOREANDO_MOTOR debe ser 'sqlite' o 'mysql'")
+
 # Base de datos SQLite de desarrollo (los .db estan en .gitignore).
 RUTA_BD = os.environ.get("PASTOREANDO_BD", str(RUTA_BASE / "data" / "pastoreando.db"))
+
+# Conexion a MySQL/MariaDB. La clave nunca se escribe en el codigo: viene del
+# archivo .env o de las variables del servidor donde se despliega.
+MYSQL_HOST = os.environ.get("PASTOREANDO_MYSQL_HOST", "127.0.0.1")
+MYSQL_PUERTO = int(os.environ.get("PASTOREANDO_MYSQL_PUERTO", "3306"))
+MYSQL_USUARIO = os.environ.get("PASTOREANDO_MYSQL_USUARIO", "pastoreando")
+MYSQL_CLAVE = os.environ.get("PASTOREANDO_MYSQL_CLAVE", "")
+MYSQL_BASE = os.environ.get("PASTOREANDO_MYSQL_BASE", "pastoreando")
+# Certificado de la autoridad del servidor (ruta o texto PEM) para conexiones TLS.
+MYSQL_CA = os.environ.get("PASTOREANDO_MYSQL_CA", "")
+MYSQL_CA_PEM = os.environ.get("PASTOREANDO_MYSQL_CA_PEM", "")
 
 # Autenticacion con JWT. En produccion la clave debe venir del .env.
 JWT_CLAVE = os.environ.get(
