@@ -75,3 +75,82 @@ export function simularApi(rutas) {
   vi.stubGlobal("fetch", fetchSimulado);
   return fetchSimulado;
 }
+
+// ---- Contratos, ganado, firma, pagos, recomendaciones y reportes (misma forma que la API) ----
+
+export const USUARIO_ARRENDATARIO = {
+  id_usuario: 2, nombre: "Brayian", apellidos: "Piedrahita Cortes", cedula: "1088765432",
+  rol: "Arrendatario", correo: "brayian.piedrahita@pastoreando.co",
+};
+export const USUARIO_CONTADOR = { ...USUARIO_PROPIETARIO, id_usuario: 4, nombre: "Sandra", rol: "Contador" };
+
+export const sesionDe = (usuario) => ({ token: "token-de-prueba", usuario });
+
+export const CONTRATO_1 = {
+  id_contrato: 1, id_lote: 1, nombre_lote: "Potrero La Esperanza", id_arrendatario: 2,
+  nombre_arrendatario: "Brayian Piedrahita Cortes", nombre_propietario: "Carlos Ramirez Soto",
+  fecha_inicio: "2026-10-01", fecha_fin: "2027-04-01", meses_duracion: 6, tarifa_por_cabeza: 85000,
+  estado: "Activo", total_cabezas: 26, valor_mensual: 2210000, valor_total: 13260000,
+};
+export const CONTRATO_4 = {
+  ...CONTRATO_1, id_contrato: 4, id_lote: 4, nombre_lote: "Lote Rio Frio", estado: "Finalizado",
+  total_cabezas: 6, valor_mensual: 510000, valor_total: 1710000,
+};
+export const CONTRATOS = [CONTRATO_1, CONTRATO_4];
+
+export const GANADO = [
+  { id_ganado: 1, id_contrato: 1, raza: "Brahman", cantidad_cabezas: 8, proposito: "Carne" },
+  { id_ganado: 5, id_contrato: 1, raza: "Girolando", cantidad_cabezas: 3, proposito: "Doble Proposito" },
+];
+
+export const RECOMENDACIONES = [
+  {
+    id_recomendacion: 1, id_ganado: 1, id_zootecnista: 3, nombre_tecnico: "Laura Gomez Duque",
+    fecha_recomendacion: "2026-10-05", descripcion: "Rotar el hato cada 15 dias para recuperar el pasto.",
+  },
+];
+
+export const PAGOS = [
+  { id_pago: 1, id_contrato: 1, fecha_pago: "2026-10-01", monto_total: 2210000, metodo_pago: "Transferencia", estado_pago: "Confirmado" },
+  { id_pago: 2, id_contrato: 1, fecha_pago: "2026-11-01", monto_total: 2210000, metodo_pago: "Consignacion", estado_pago: "Pendiente" },
+];
+
+export const HUELLA = "7b523682c1bf004bef52befca1699b50aedcada06737f23301902ef27c90f92c";
+export const DOCUMENTO = {
+  id_contrato: 1,
+  texto: "CONTRATO DE ARRENDAMIENTO GANADERO No. 0001\n\nPROPIETARIO: Carlos Ramirez Soto",
+  huella_sha256: HUELLA,
+};
+export const SIN_FIRMAS = { id_contrato: 1, huella_actual: HUELLA, firmas: [], firmado_por_ambas_partes: false };
+export const FIRMA_PROPIETARIO = {
+  id_firma: 1, id_usuario: 1, nombre_firmante: "Carlos Ramirez Soto", rol_firmante: "Propietario",
+  fecha_firma: "2026-10-24T09:15:00", huella_documento: HUELLA, vigente: true,
+};
+
+export const REPORTE = {
+  margen_utilidad: 0.2,
+  contratos: [
+    { id_contrato: 1, nombre_lote: "Potrero La Esperanza", estado: "Activo", total_cabezas: 26,
+      ingreso_total: 13260000, costo_estimado: 11050000, utilidad_proyectada: 2210000, recaudado: 2210000, saldo_por_cobrar: 11050000 },
+    { id_contrato: 2, nombre_lote: "Lote Alto El Mirador", estado: "Activo", total_cabezas: 24,
+      ingreso_total: 8640000, costo_estimado: 7200000, utilidad_proyectada: 1440000, recaudado: 2160000, saldo_por_cobrar: 6480000 },
+  ],
+  totales: { ingreso_total: 21900000, costo_estimado: 18250000, utilidad_proyectada: 3650000, recaudado: 4370000, saldo_por_cobrar: 17530000 },
+};
+
+/** Rutas de la API con datos normales para el detalle del contrato 1. */
+export function rutasContrato1(extra = {}) {
+  return {
+    "GET /api/contratos": { cuerpo: CONTRATOS },
+    "GET /api/contratos/1": { cuerpo: CONTRATO_1 },
+    "GET /api/contratos/1/ganado": { cuerpo: GANADO },
+    "GET /api/contratos/1/documento": { cuerpo: DOCUMENTO },
+    "GET /api/contratos/1/firmas": { cuerpo: SIN_FIRMAS },
+    "GET /api/contratos/1/pagos": { cuerpo: PAGOS },
+    "GET /api/ganado/1/recomendaciones": { cuerpo: RECOMENDACIONES },
+    "GET /api/ganado/5/recomendaciones": { cuerpo: [] },
+    "GET /api/reportes/rentabilidad": { cuerpo: REPORTE },
+    "GET /api/lotes": { cuerpo: LOTES },
+    ...extra,
+  };
+}
