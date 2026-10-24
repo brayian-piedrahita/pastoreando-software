@@ -8,13 +8,16 @@ import LimiteError from "./componentes/LimiteError.jsx";
 import RutaProtegida from "./componentes/RutaProtegida.jsx";
 import { ProveedorSesion } from "./contexto/ProveedorSesion.jsx";
 import PaginaCalculoCosto from "./paginas/PaginaCalculoCosto.jsx";
+import PaginaContratos from "./paginas/PaginaContratos.jsx";
+import PaginaDetalleContrato from "./paginas/PaginaDetalleContrato.jsx";
 import PaginaLogin from "./paginas/PaginaLogin.jsx";
 import PaginaMonitoreoCarga from "./paginas/PaginaMonitoreoCarga.jsx";
 import PaginaNoEncontrada from "./paginas/PaginaNoEncontrada.jsx";
 import PaginaPanel from "./paginas/PaginaPanel.jsx";
 import PaginaRegistro from "./paginas/PaginaRegistro.jsx";
+import PaginaReportes from "./paginas/PaginaReportes.jsx";
 import PaginaSinConexion from "./paginas/PaginaSinConexion.jsx";
-import { ROLES_COSTOS } from "./utilidades/permisos.js";
+import { ROLES_COSTOS, ROLES_REPORTES } from "./utilidades/permisos.js";
 
 export default function App() {
   return (
@@ -44,6 +47,16 @@ export default function App() {
               }
             />
             <Route path="/monitoreo" element={<PaginaMonitoreoCarga />} />
+            <Route path="/contratos" element={<PaginaContratos />} />
+            <Route path="/contratos/:idContrato" element={<PaginaDetalleContrato />} />
+            <Route
+              path="/reportes"
+              element={
+                <RutaProtegida roles={ROLES_REPORTES}>
+                  <PaginaReportes />
+                </RutaProtegida>
+              }
+            />
           </Route>
 
           <Route path="*" element={<PaginaNoEncontrada />} />
