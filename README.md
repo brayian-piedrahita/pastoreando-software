@@ -24,7 +24,7 @@ Los códigos RF corresponden a la especificación de requerimientos del proyecto
 ```
 app/
   domain/          Entidades y reglas (Lote, Contrato, Ganado, costo, validaciones)
-  infrastructure/  SQLite (Singleton), repositorios con consultas parametrizadas, seguridad
+  infrastructure/  SQLite o MySQL (Singleton y adaptador), repositorios con consultas parametrizadas, seguridad
   services/        Casos de uso y permisos por rol
   api/             Rutas FastAPI y traducción de errores a códigos HTTP
   cli/             Menú de consola
@@ -80,6 +80,27 @@ Todos usan la contraseña `Pastoreando2026*`.
 python -m pytest -v        # pruebas automáticas
 python -m black --check .  # formato
 python -m flake8 .         # estilo PEP 8 (máximo 88 columnas)
+```
+
+## Base de datos MySQL/MariaDB
+
+Por defecto la aplicación usa SQLite (`data/pastoreando.db`). Para trabajar con
+MySQL se elige el motor con variables de entorno, sin cambiar el código:
+
+1. Crear la base y un usuario propio en MySQL (no use `root` para la aplicación).
+2. En el archivo `.env` definir `PASTOREANDO_MOTOR=mysql` y las variables
+   `PASTOREANDO_MYSQL_HOST`, `_PUERTO`, `_USUARIO`, `_CLAVE` y `_BASE`
+   (ver `.env.example`). La clave solo vive en el `.env`, que no se versiona.
+3. Arrancar la aplicación: al iniciar crea las tablas de `sql/esquema_mysql.sql`
+   que falten y carga los datos de prueba si la base está vacía.
+
+El módulo `app/infrastructure/conexion_mysql.py` hace que una conexión MySQL se
+comporte como la de SQLite (marcadores `?`, filas por nombre, fechas y decimales),
+así los repositorios son los mismos con cualquier motor. Para correr toda la
+suite contra MySQL, use una base exclusiva de pruebas (se vacía en cada prueba):
+
+```bash
+PASTOREANDO_MOTOR=mysql python -m pytest -q
 ```
 
 ## Estándares de código
