@@ -1,10 +1,8 @@
 """Acceso a datos de la tabla LOTES."""
 
-import sqlite3
-
 from app.domain.errores import ConflictoError
 from app.domain.lote import Lote
-from app.infrastructure.db import obtener_bd
+from app.infrastructure.db import ErrorIntegridad, FilaBD, obtener_bd
 
 # Carga actual: cabezas de los contratos ACTIVOS del lote. Un contrato
 # finalizado o anulado ya no ocupa el potrero.
@@ -15,7 +13,7 @@ _CARGA_ACTUAL = (
 )
 
 
-def _a_lote(fila: sqlite3.Row) -> Lote:
+def _a_lote(fila: FilaBD) -> Lote:
     """Traduce una fila de LOTES a la entidad del dominio."""
     return Lote(
         id_lote=fila["idLote"],
@@ -86,7 +84,7 @@ class RepositorioLotes:
         try:
             with obtener_bd().conexion() as con:
                 con.execute("DELETE FROM LOTES WHERE idLote = ?", (id_lote,))
-        except sqlite3.IntegrityError:
+        except ErrorIntegridad:
             raise ConflictoError(
                 "No se puede eliminar el lote porque tiene contratos asociados"
             )

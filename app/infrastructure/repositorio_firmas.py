@@ -1,9 +1,7 @@
 """Acceso a datos de la tabla FIRMAS_CONTRATO."""
 
-import sqlite3
-
 from app.domain.errores import ConflictoError
-from app.infrastructure.db import obtener_bd
+from app.infrastructure.db import ErrorIntegridad, obtener_bd
 
 
 class RepositorioFirmas:
@@ -42,5 +40,5 @@ class RepositorioFirmas:
                     (id_contrato, id_usuario, rol, fecha, huella),
                 )
                 return cursor.lastrowid
-        except sqlite3.IntegrityError:
+        except ErrorIntegridad:
             raise ConflictoError("Usted ya firmó este contrato")

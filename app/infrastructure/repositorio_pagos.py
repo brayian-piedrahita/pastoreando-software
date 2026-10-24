@@ -1,13 +1,12 @@
 """Acceso a datos de la tabla PAGOS."""
 
-import sqlite3
 from datetime import date
 
 from app.domain.pago import Pago
-from app.infrastructure.db import obtener_bd
+from app.infrastructure.db import FilaBD, obtener_bd
 
 
-def _a_pago(fila: sqlite3.Row) -> Pago:
+def _a_pago(fila: FilaBD) -> Pago:
     return Pago(
         id_pago=fila["idPago"],
         id_contrato=fila["idContrato"],

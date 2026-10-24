@@ -1,12 +1,11 @@
 """Acceso a datos de las tablas CONTRATOS y GANADO."""
 
-import sqlite3
 from datetime import date
 
 from app.domain.contrato import Contrato
 from app.domain.errores import ConflictoError
 from app.domain.ganado import Ganado
-from app.infrastructure.db import obtener_bd
+from app.infrastructure.db import ErrorIntegridad, FilaBD, obtener_bd
 
 _TOTAL_CABEZAS = (
     "COALESCE((SELECT SUM(g.cantidadCabezas) FROM GANADO g "
@@ -29,7 +28,7 @@ _CONSULTA_DETALLE = (
 )
 
 
-def _a_contrato(fila: sqlite3.Row) -> Contrato:
+def _a_contrato(fila: FilaBD) -> Contrato:
     """Traduce una fila de CONTRATOS a la entidad del dominio."""
     return Contrato(
         id_contrato=fila["idContrato"],
@@ -42,7 +41,7 @@ def _a_contrato(fila: sqlite3.Row) -> Contrato:
     )
 
 
-def _a_detalle(fila: sqlite3.Row) -> dict:
+def _a_detalle(fila: FilaBD) -> dict:
     """Traduce una fila de la consulta de detalle a un diccionario."""
     contrato = _a_contrato(fila)
     return {
@@ -60,7 +59,7 @@ def _a_detalle(fila: sqlite3.Row) -> dict:
     }
 
 
-def _a_ganado(fila: sqlite3.Row) -> Ganado:
+def _a_ganado(fila: FilaBD) -> Ganado:
     """Traduce una fila de GANADO a la entidad del dominio."""
     return Ganado(
         id_ganado=fila["idGanado"],
@@ -142,7 +141,7 @@ class RepositorioContratos:
                 con.execute(
                     "DELETE FROM CONTRATOS WHERE idContrato = ?", (id_contrato,)
                 )
-        except sqlite3.IntegrityError:
+        except ErrorIntegridad:
             raise ConflictoError(
                 "No se puede eliminar el contrato porque tiene ganado registrado"
             )

@@ -1,12 +1,10 @@
 """Acceso a datos de la tabla USUARIOS."""
 
-import sqlite3
-
 from app.domain.errores import ConflictoError
-from app.infrastructure.db import obtener_bd
+from app.infrastructure.db import ErrorIntegridad, FilaBD, obtener_bd
 
 
-def _a_dict(fila: sqlite3.Row) -> dict:
+def _a_dict(fila: FilaBD) -> dict:
     """Traduce una fila (columnas camelCase) a un diccionario snake_case."""
     return {
         "id_usuario": fila["idUsuario"],
@@ -65,5 +63,5 @@ class RepositorioUsuarios:
                     (nombre, apellidos, cedula, rol, correo, hash_contrasena),
                 )
                 return cursor.lastrowid
-        except sqlite3.IntegrityError:
+        except ErrorIntegridad:
             raise ConflictoError("La cédula o el correo ya están registrados")
