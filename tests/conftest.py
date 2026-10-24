@@ -26,10 +26,26 @@ TECNICO = "laura.gomez@pastoreando.co"
 CONTADOR = "sandra.bedoya@pastoreando.co"
 
 
+def _vaciar_mysql() -> None:
+    """Borra todas las tablas de la base MySQL de pruebas (aislamiento por prueba)."""
+    with obtener_bd().conexion() as con:
+        con.execute("SET FOREIGN_KEY_CHECKS = 0")
+        for fila in con.execute("SHOW TABLES").fetchall():
+            con.execute(f"DROP TABLE IF EXISTS {list(fila.values())[0]}")
+        con.execute("SET FOREIGN_KEY_CHECKS = 1")
+
+
 @pytest.fixture()
 def cliente(tmp_path):
-    """Cliente HTTP sobre una base de datos nueva con los datos de prueba."""
-    obtener_bd().configurar(tmp_path / "prueba.db")
+    """Cliente HTTP sobre una base de datos nueva con los datos de prueba.
+
+    Con PASTOREANDO_MOTOR=mysql usa la base MySQL de pruebas (se vacia antes de
+    cada prueba); por defecto usa un archivo SQLite temporal.
+    """
+    if obtener_bd().motor == "mysql":
+        _vaciar_mysql()
+    else:
+        obtener_bd().configurar(tmp_path / "prueba.db")
     iniciar_bd()
     cargar_datos_prueba()
     with TestClient(app) as http:
