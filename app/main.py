@@ -9,6 +9,7 @@ from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 
 from app import config
+from app.api.archivos_aplicacion import ArchivosAplicacion
 from app.api.errores import registrar_manejadores
 from app.api.routers import (
     auth,
@@ -51,9 +52,17 @@ for modulo in (
 ):
     app.include_router(modulo.router)
 
+
+@app.get("/api/salud", tags=["Estado"])
+def salud() -> dict:
+    """Responde mientras el servidor este vivo (lo consulta el despliegue)."""
+    return {"estado": "ok"}
+
+
 # El frontend se sirve desde la raiz para que el service worker cubra toda la PWA.
+_servidor_de_archivos = ArchivosAplicacion if config.FRONTEND_ES_SPA else StaticFiles
 app.mount(
     "/",
-    StaticFiles(directory=config.RUTA_BASE / "frontend", html=True),
+    _servidor_de_archivos(directory=config.RUTA_FRONTEND, html=True),
     name="frontend",
 )

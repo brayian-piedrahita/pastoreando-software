@@ -57,6 +57,12 @@ JWT_MINUTOS_VIGENCIA = int(os.environ.get("PASTOREANDO_JWT_MINUTOS", "60"))
 # Costo de calculo del hash bcrypt: 12 es seguro; las pruebas usan un valor bajo.
 BCRYPT_RONDAS = int(os.environ.get("PASTOREANDO_BCRYPT_RONDAS", "12"))
 
+# Interfaz que sirve el servidor en la raiz. Por defecto la PWA de la carpeta
+# frontend; en el despliegue se apunta al resultado de "npm run build" de
+# React (PASTOREANDO_FRONTEND=frontend-react/dist y PASTOREANDO_FRONTEND_SPA=1).
+RUTA_FRONTEND = RUTA_BASE / os.environ.get("PASTOREANDO_FRONTEND", "frontend")
+FRONTEND_ES_SPA = os.environ.get("PASTOREANDO_FRONTEND_SPA", "0").strip() == "1"
+
 # Margen de utilidad proyectado (RF06 y calculo del RF01).
 MARGEN_UTILIDAD = 0.20
 

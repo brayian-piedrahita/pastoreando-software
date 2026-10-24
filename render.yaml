@@ -1,0 +1,39 @@
+# Despliegue de Pastoreando en Render (una sola direccion: API FastAPI + React compilado).
+# La base de datos es un MySQL externo (Aiven); los datos de conexion se escriben en el
+# panel de Render al crear el servicio y no se guardan en este archivo.
+services:
+  - type: web
+    name: pastoreando
+    runtime: python
+    plan: free
+    region: oregon
+    buildCommand: pip install -r requirements.txt && cd frontend-react && npm ci && npm run build
+    startCommand: python -m uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/salud
+    envVars:
+      - key: NODE_VERSION
+        value: 24.22.1
+      - key: PASTOREANDO_FRONTEND
+        value: frontend-react/dist
+      - key: PASTOREANDO_FRONTEND_SPA
+        value: "1"
+      - key: PASTOREANDO_MOTOR
+        value: mysql
+      - key: PASTOREANDO_MYSQL_HOST
+        sync: false
+      - key: PASTOREANDO_MYSQL_PUERTO
+        sync: false
+      - key: PASTOREANDO_MYSQL_USUARIO
+        sync: false
+      - key: PASTOREANDO_MYSQL_CLAVE
+        sync: false
+      - key: PASTOREANDO_MYSQL_BASE
+        sync: false
+      - key: PASTOREANDO_MYSQL_CA_PEM
+        sync: false
+      - key: PASTOREANDO_JWT_CLAVE
+        generateValue: true
+      - key: PASTOREANDO_CODIGO_PROFESIONAL
+        generateValue: true
+      - key: PASTOREANDO_BCRYPT_RONDAS
+        value: "10"
