@@ -28,3 +28,19 @@ export function formatoNumero(valor) {
   if (!Number.isFinite(valor)) return "—";
   return NUMERO.format(valor);
 }
+
+// Devuelve "1 de octubre de 2026" a partir de "2026-10-01". Se arma con la fecha local a
+// mediodia para que el cambio de zona horaria no corra el dia.
+export function formatoFecha(texto) {
+  if (typeof texto !== "string" || !/^\d{4}-\d{2}-\d{2}/.test(texto)) return "—";
+  const [anio, mes, dia] = texto.slice(0, 10).split("-").map(Number);
+  return new Intl.DateTimeFormat("es-CO", { dateStyle: "long" }).format(new Date(anio, mes - 1, dia, 12));
+}
+
+// Devuelve "1 de octubre de 2026, 3:05 p. m." a partir de "2026-10-01T15:05:00".
+export function formatoFechaHora(texto) {
+  if (typeof texto !== "string" || !texto.includes("T")) return formatoFecha(texto);
+  const fecha = new Date(texto);
+  if (Number.isNaN(fecha.getTime())) return "—";
+  return new Intl.DateTimeFormat("es-CO", { dateStyle: "long", timeStyle: "short" }).format(fecha);
+}

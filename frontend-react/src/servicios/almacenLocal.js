@@ -4,6 +4,8 @@
 export const CLAVES = Object.freeze({
   SESION: "pastoreando.sesion",
   LOTES: "pastoreando.lotes",
+  CONTRATOS: "pastoreando.contratos",
+  REPORTE: "pastoreando.reporte",
 });
 
 export function leer(clave, porDefecto = null) {

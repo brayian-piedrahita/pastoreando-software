@@ -118,3 +118,56 @@ export function validarCosto(valores) {
 
   return recolectar(pares);
 }
+
+export const METODOS_PAGO = ["Efectivo", "Transferencia", "PSE", "Consignacion"];
+
+// Texto que ve el usuario; el valor enviado a la API no lleva tilde.
+export const TEXTO_METODO = { Consignacion: "Consignación" };
+
+export function validarGanado({ raza, cantidad_cabezas, proposito }) {
+  const texto = String(raza ?? "").trim();
+  let errorRaza = null;
+  if (texto === "") errorRaza = "La raza es obligatoria";
+  else if (texto.length < 2) errorRaza = "La raza debe tener al menos 2 caracteres";
+  else if (texto.length > 40) errorRaza = "La raza no puede superar 40 caracteres";
+  else if (!PATRON_LETRAS.test(texto)) errorRaza = "La raza solo admite letras";
+
+  const cabezas = String(cantidad_cabezas ?? "").trim();
+  let errorCabezas = null;
+  if (cabezas === "") errorCabezas = "La cantidad de cabezas es obligatoria";
+  else if (!/^\d+$/.test(cabezas)) errorCabezas = "Debe ser un número entero";
+  else if (Number(cabezas) < 1) errorCabezas = "Debe ser mayor o igual a 1";
+
+  return recolectar([
+    ["raza", errorRaza],
+    ["cantidad_cabezas", errorCabezas],
+    ["proposito", PROPOSITOS.includes(proposito) ? null : "Seleccione un propósito"],
+  ]);
+}
+
+export function validarPago({ fecha_pago, monto_total, metodo_pago }) {
+  let errorFecha = null;
+  if (textoVacio(fecha_pago)) errorFecha = "La fecha del pago es obligatoria";
+  else if (!/^\d{4}-\d{2}-\d{2}$/.test(fecha_pago)) errorFecha = "Escriba una fecha válida";
+
+  const monto = String(monto_total ?? "").trim();
+  let errorMonto = null;
+  if (monto === "") errorMonto = "El monto es obligatorio";
+  else if (!Number.isFinite(Number(monto))) errorMonto = "Debe ser un número";
+  else if (Number(monto) <= 0) errorMonto = "Debe ser mayor a 0";
+
+  return recolectar([
+    ["fecha_pago", errorFecha],
+    ["monto_total", errorMonto],
+    ["metodo_pago", METODOS_PAGO.includes(metodo_pago) ? null : "Seleccione un método de pago"],
+  ]);
+}
+
+export function validarRecomendacion({ descripcion }) {
+  const texto = String(descripcion ?? "").trim();
+  let error = null;
+  if (texto === "") error = "La recomendación es obligatoria";
+  else if (texto.length < 10) error = "Debe tener al menos 10 caracteres";
+  else if (texto.length > 500) error = "No puede superar 500 caracteres";
+  return recolectar([["descripcion", error]]);
+}

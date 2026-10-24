@@ -20,8 +20,10 @@ export function ProveedorSesion({ children }) {
 
   const cerrarSesion = useCallback(() => {
     borrar(CLAVES.SESION);
-    // La copia local de lotes pertenece a este usuario: no debe quedar para el siguiente.
+    // Las copias locales pertenecen a este usuario: no deben quedar para el siguiente.
     borrar(CLAVES.LOTES);
+    borrar(CLAVES.CONTRATOS);
+    borrar(CLAVES.REPORTE);
     setSesion(null);
   }, []);
 
