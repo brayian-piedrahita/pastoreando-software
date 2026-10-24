@@ -74,6 +74,13 @@ Todos usan la contraseña `Pastoreando2026*`.
 | Técnico | laura.gomez@pastoreando.co |
 | Contador | sandra.bedoya@pastoreando.co |
 
+## Documentación y versión en línea
+
+- [`docs/MODULOS.md`](docs/MODULOS.md): cada módulo con sus roles, componentes, entradas, salidas y pruebas.
+- [`docs/DESPLIEGUE.md`](docs/DESPLIEGUE.md): ambientes, variables de entorno, pruebas y despliegue en Render con MySQL en Aiven.
+- Versión en línea para revisión: <https://pastoreando.onrender.com> (la primera visita tarda cerca de un minuto
+  porque el servidor gratuito se duerme tras 15 minutos sin uso).
+
 ## Pruebas y estilo
 
 ```bash
