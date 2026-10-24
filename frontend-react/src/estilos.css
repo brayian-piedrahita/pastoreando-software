@@ -783,6 +783,201 @@ a {
 
 /* ---------- Pantallas anchas ---------- */
 
+/* ---------- Contratos, ganado, firma, pagos y reportes ---------- */
+
+.insignia--gris {
+  background: #546e7a;
+}
+
+.tarjeta-contrato {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  padding: 16px;
+  border: 1px solid var(--gris-borde);
+  border-radius: var(--radio);
+  background: var(--blanco);
+}
+
+.tarjeta-contrato__titulo {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.tarjeta-contrato__enlace {
+  justify-self: start;
+  text-decoration: none;
+}
+
+.datos {
+  display: grid;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.datos div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.datos dt {
+  color: var(--suave);
+  font-size: 0.85rem;
+}
+
+.datos dd {
+  margin: 0;
+  font-weight: 600;
+  text-align: right;
+}
+
+.seccion {
+  margin-top: 28px;
+  padding-top: 8px;
+  border-top: 2px solid var(--verde-claro);
+}
+
+.formulario--compacto {
+  max-width: 520px;
+  margin-top: 8px;
+}
+
+.campo textarea {
+  width: 100%;
+  padding: 8px 2px;
+  border: 0;
+  border-bottom: 2px solid #9e9e9e;
+  background: transparent;
+  font: inherit;
+  color: var(--texto);
+  resize: vertical;
+}
+
+.campo textarea:focus {
+  outline: none;
+  border-bottom-color: var(--verde);
+}
+
+.campo--error textarea {
+  border-bottom-color: var(--rojo);
+}
+
+.lista-hatos,
+.lista-firmas,
+.recomendaciones__lista {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.hato,
+.lista-firmas li,
+.recomendaciones__lista li {
+  padding: 10px 12px;
+  border: 1px solid var(--gris-borde);
+  border-radius: 8px;
+  background: var(--gris);
+}
+
+.hato__resumen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+}
+
+.hato__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.recomendaciones {
+  margin-top: 12px;
+  padding: 12px;
+  border-left: 4px solid var(--verde);
+  background: var(--blanco);
+}
+
+.recomendaciones__lista p {
+  margin: 0 0 4px;
+}
+
+.recomendaciones__vacio {
+  color: var(--suave);
+}
+
+.documento {
+  max-height: 320px;
+  overflow: auto;
+  padding: 12px;
+  border: 1px solid var(--gris-borde);
+  border-radius: 8px;
+  background: var(--gris);
+  font: 0.9rem/1.5 "Segoe UI", Roboto, Arial, sans-serif;
+  white-space: pre-wrap;
+}
+
+.huella {
+  overflow-wrap: anywhere;
+  color: var(--suave);
+  font-size: 0.85rem;
+}
+
+.totales-pagos {
+  margin: 0 0 12px;
+}
+
+.tabla-contenedor {
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.tabla th,
+.tabla td {
+  padding: 8px 6px;
+  border-bottom: 1px solid var(--gris-borde);
+  text-align: left;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.tabla thead th {
+  background: var(--verde-claro);
+  color: var(--verde-oscuro);
+}
+
+.tabla tfoot th,
+.tabla tfoot td {
+  border-top: 2px solid var(--verde);
+  font-weight: 700;
+}
+
+.tabla .tabla__numero {
+  font-variant-numeric: tabular-nums;
+}
+
+.tabla__acciones {
+  display: inline-flex;
+  gap: 8px;
+}
+
+.indicadores--cuatro {
+  grid-template-columns: 1fr 1fr;
+}
+
 @media (min-width: 640px) {
   .encabezado__titulo,
   .encabezado__usuario > span {
@@ -834,4 +1029,17 @@ a {
   .menu-lateral {
     transition: none;
   }
+}
+
+.indicadores--cuatro .indicador__valor {
+  font-size: 1.1rem;
+  overflow-wrap: anywhere;
+}
+
+.hato__acciones .boton,
+.tabla__acciones .boton,
+.recomendaciones__lista .boton {
+  width: auto;
+  min-height: 44px;
+  padding-inline: 16px;
 }

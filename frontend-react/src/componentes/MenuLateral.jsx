@@ -2,7 +2,7 @@
 // de costos se oculta a los roles que la API rechazaria.
 
 import { NavLink } from "react-router";
-import { puedeCalcularCostos } from "../utilidades/permisos.js";
+import { puedeCalcularCostos, puedeVerReportes } from "../utilidades/permisos.js";
 import Icono from "./Icono.jsx";
 
 export default function MenuLateral({ abierto, rol, alNavegar }) {
@@ -10,6 +10,8 @@ export default function MenuLateral({ abierto, rol, alNavegar }) {
     { ruta: "/panel", texto: "Panel de control", icono: "panel", visible: true },
     { ruta: "/costos", texto: "Módulo contable (RF01)", icono: "calculadora", visible: puedeCalcularCostos(rol) },
     { ruta: "/monitoreo", texto: "Monitoreo ambiental (RF04)", icono: "alerta", visible: true },
+    { ruta: "/contratos", texto: "Contratos y firma (RF05)", icono: "contrato", visible: true },
+    { ruta: "/reportes", texto: "Reportes (RF06)", icono: "grafica", visible: puedeVerReportes(rol) },
   ];
 
   return (

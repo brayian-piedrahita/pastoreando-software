@@ -97,6 +97,24 @@ const TRAZOS = {
       <path d="M9 8h6M9 12h6" />
     </>
   ),
+  contrato: (
+    <>
+      <path d="M6 3h9l4 4v14H6V3Z" />
+      <path d="M15 3v4h4M9 12h7M9 16h7" />
+    </>
+  ),
+  grafica: (
+    <>
+      <path d="M4 20V4M4 20h16" />
+      <path d="M8 16v-4M12 16V8M16 16v-6" />
+    </>
+  ),
+  firma: (
+    <>
+      <path d="m15 4 5 5-10 10H5v-5L15 4Z" />
+      <path d="M4 21h16" />
+    </>
+  ),
   lista: <path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01" />,
   sinNube: (
     <>
