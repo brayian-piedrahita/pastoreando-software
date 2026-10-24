@@ -2,7 +2,8 @@
 
 Interfaz web del proyecto **Pastoreando** (arrendamiento de lotes para pastoreo de ganado bovino),
 construida con React y conectada a la API del repositorio (`app/`, FastAPI). Implementa los prototipos
-de inicio de sesión, registro, panel, módulo contable, monitoreo de carga y error de conexión.
+de inicio de sesión, registro, panel, módulo contable, monitoreo de carga y error de conexión, y los
+módulos de contratos, ganado, firma digital, pagos, recomendaciones y reportes.
 
 | Requisito | Dónde se resuelve |
 |---|---|
@@ -10,6 +11,10 @@ de inicio de sesión, registro, panel, módulo contable, monitoreo de carga y er
 | RF02 · Desglose por rubro | `/costos`: `DesgloseCostos` con vista por unidad o por lote |
 | RF04 · Alerta de sobrecarga | `/monitoreo` y `/panel`: `MedidorCarga`, `InsigniaNivel`, `AvisoNivel` |
 | RNF01 · Sin conexión | `BannerConexion`, copia local de lotes (`useLotes`) y `/sin-conexion` |
+| RF05 · Contrato y firma digital | `/contratos/:id`: `SeccionFirma` (texto, huella SHA-256 y firmas vigentes) |
+| Ganado y recomendaciones | `/contratos/:id`: `SeccionGanado` con la alerta RF04 y `PanelRecomendaciones` |
+| Pagos | `/contratos/:id`: `SeccionPagos` (registro del arrendatario, confirmación del propietario o contador) |
+| RF06 · Reportes de rentabilidad | `/reportes`: ingresos, costo, utilidad con margen del 20 % y recaudo |
 | Acceso por rol | `/login`, `/registro`, `RutaProtegida` y `MenuLateral` |
 
 ## Requisitos
@@ -61,10 +66,10 @@ Todos usan la contraseña `Pastoreando2026*`.
 
 | Rol | Correo | Qué ve |
 |---|---|---|
-| Propietario | carlos.ramirez@pastoreando.co | Panel, costos y monitoreo |
-| Arrendatario | brayian.piedrahita@pastoreando.co | Panel, costos y monitoreo |
-| Técnico | laura.gomez@pastoreando.co | Panel y monitoreo (la API le niega los costos) |
-| Contador | sandra.bedoya@pastoreando.co | Panel, costos y monitoreo |
+| Propietario | carlos.ramirez@pastoreando.co | Panel, costos, monitoreo, contratos (firma y confirmación de pagos) y reportes |
+| Arrendatario | brayian.piedrahita@pastoreando.co | Panel, costos, monitoreo y contratos (ganado, firma y pagos) |
+| Técnico | laura.gomez@pastoreando.co | Panel, monitoreo y contratos (escribe recomendaciones); la API le niega costos y reportes |
+| Contador | sandra.bedoya@pastoreando.co | Panel, costos, monitoreo, contratos (confirmación de pagos) y reportes |
 
 ## Pruebas y compilación
 
@@ -88,12 +93,13 @@ frontend-react/
     main.jsx            monta App dentro de BrowserRouter
     App.jsx             rutas y proveedores
     estilos.css         paleta (#4CAF50, #F44336, #F5F5F5), diseño mobile-first
-    componentes/        25 componentes reutilizables (24 del diseño + Icono)
-    paginas/            una página por ruta (7)
+    componentes/        34 componentes reutilizables (incluye Icono)
+    paginas/            una página por ruta (10)
     contexto/           ProveedorSesion
-    hooks/              useSesion, useConexion, useLotes, useFormulario
-    servicios/          clienteApi, servicioAuth, servicioLotes, servicioCostos, almacenLocal
-    utilidades/         formato, validaciones, permisos
+    hooks/              useSesion, useConexion, useConsulta, useLotes, useFormulario
+    servicios/          clienteApi, servicioAuth, servicioLotes, servicioCostos, servicioContratos,
+                        servicioPagos, servicioFirmas, servicioRecomendaciones, servicioReportes, almacenLocal
+    utilidades/         formato, validaciones, permisos, errores
     pruebas/            suite de pruebas y datos simulados
 ```
 
@@ -111,6 +117,9 @@ conocen la API y los servicios son la única capa que conoce la URL, el token y 
 | `/panel` | Panel de control | Con sesión |
 | `/costos` | Módulo contable | Propietario, Arrendatario y Contador |
 | `/monitoreo` | Monitoreo ambiental y sobrecarga | Con sesión |
+| `/contratos` | Lista de contratos del usuario | Con sesión |
+| `/contratos/:idContrato` | Detalle: ganado, recomendaciones, documento y firma, pagos | Con sesión (cada acción según el rol) |
+| `/reportes` | Reportes financieros (RF06) | Propietario y Contador |
 | `/sin-conexion` | Error de conexión | Pública |
 | `*` | Página no encontrada | Pública |
 
@@ -121,7 +130,14 @@ conocen la API y los servicios son la única capa que conoce la URL, el token y 
   la web, la consola y las pruebas del backend nunca puedan discrepar.
 - **Sin bibliotecas de estado ni de estilos.** `Context` para la sesión, `fetch` nativo y CSS propio:
   menos kilobytes en una conexión de campo.
-- **Sin conexión.** Cada consulta correcta de lotes se guarda en `localStorage` y se usa si después falla
-  la red. La sincronización de datos nuevos con IndexedDB queda para una etapa posterior.
+- **Sin conexión.** Cada consulta correcta de lotes, contratos y reportes se guarda en `localStorage` (por
+  usuario, y se borra al cerrar sesión) y se usa si después falla la red. El detalle de un contrato y las
+  acciones de escribir (registrar ganado, firmar, pagar) necesitan red y lo explican. La sincronización de datos nuevos con IndexedDB queda para una etapa posterior.
 - **Sesión.** El token JWT (1 hora) se guarda en `localStorage`. Si la API responde 401 con un token
   enviado, la sesión se cierra y se lleva al inicio de sesión.
+- **Permisos.** Cada botón se muestra solo al rol que la API autoriza (registrar ganado y pagos: arrendatario;
+  firmar: propietario y arrendatario; confirmar o rechazar pagos: propietario y contador; recomendaciones:
+  técnico; reportes: propietario y contador). La API sigue siendo la autoridad y su mensaje de error se
+  muestra tal cual.
+- **Firma y ganado.** El texto del contrato depende de las cabezas registradas. Si el ganado cambia, el
+  documento y la huella se piden de nuevo y las firmas anteriores aparecen como desactualizadas.
