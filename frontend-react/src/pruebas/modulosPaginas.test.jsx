@@ -415,8 +415,9 @@ describe("reportes financieros", () => {
     expect(screen.getByText(/margen de 20 %/)).toBeInTheDocument();
     expect(screen.getByText("Ingreso total")).toBeInTheDocument();
     const tabla = screen.getByRole("table", { name: "Rentabilidad por contrato" });
-    expect(within(tabla).getByText("Potrero La Esperanza")).toBeInTheDocument();
-    expect(within(tabla).getByText("Lote Alto El Mirador")).toBeInTheDocument();
+    // Cada fila es un contrato: el numero distingue dos contratos sobre un mismo lote.
+    expect(within(tabla).getByText("Contrato 0001 · Potrero La Esperanza")).toBeInTheDocument();
+    expect(within(tabla).getByText("Contrato 0002 · Lote Alto El Mirador")).toBeInTheDocument();
     expect(within(tabla).getAllByText("$ 21.900.000,00")).not.toHaveLength(0);
     expect(leer(CLAVES.REPORTE).datos.totales.recaudado).toBe(4370000);
   });

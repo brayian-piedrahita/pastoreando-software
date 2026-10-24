@@ -62,7 +62,9 @@ export default function PaginaReportes() {
             <tbody>
               {contratos.map((c) => (
                 <tr key={c.id_contrato}>
-                  <th scope="row">{c.nombre_lote}</th>
+                  <th scope="row">
+                    Contrato {String(c.id_contrato).padStart(4, "0")} · {c.nombre_lote}
+                  </th>
                   <td>
                     <InsigniaEstado estado={c.estado} />
                   </td>
