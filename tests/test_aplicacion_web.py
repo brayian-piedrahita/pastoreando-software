@@ -51,6 +51,23 @@ def test_una_ruta_de_api_inexistente_da_404(aplicacion):
     assert aplicacion.get("/api/nada").status_code == 404
 
 
+@pytest.mark.parametrize(
+    ("ruta", "es_de_servidor"),
+    [
+        ("api/nada", True),
+        ("api\\nada", True),
+        ("assets/falta.js", True),
+        ("assets\\falta.js", True),
+        ("contratos/3", False),
+        ("contratos\\3", False),
+        ("reportes", False),
+    ],
+)
+def test_reconoce_rutas_con_barras_de_linux_y_de_windows(ruta, es_de_servidor):
+    """CP-V07 | Despliegue | Rutas con / o \\ | API y archivos al servidor, el resto a React"""
+    assert ArchivosAplicacion._es_ruta_de_servidor(ruta) is es_de_servidor
+
+
 def test_la_ruta_de_salud_responde_ok(cliente):
     """CP-V06 | Despliegue | GET /api/salud | estado ok sin sesion"""
     r = cliente.get("/api/salud")

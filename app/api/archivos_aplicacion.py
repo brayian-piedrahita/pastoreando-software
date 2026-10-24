@@ -24,5 +24,6 @@ class ArchivosAplicacion(StaticFiles):
 
     @staticmethod
     def _es_ruta_de_servidor(path: str) -> bool:
-        ultimo = path.rsplit("/", 1)[-1]
-        return path.startswith("api/") or "." in ultimo
+        # En Windows Starlette entrega la ruta con barras invertidas (api\nada).
+        ruta = path.replace("\\", "/")
+        return ruta.startswith("api/") or "." in ruta.rsplit("/", 1)[-1]
