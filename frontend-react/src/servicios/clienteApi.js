@@ -28,6 +28,51 @@ export class ErrorRed extends Error {
   }
 }
 
+// Un 401 con token enviado significa sesion vencida (el JWT dura 1 hora): se avisa a la
+// aplicacion para que cierre la sesion y lleve al inicio de sesion.
+async function lanzarErrorApi(respuesta, sesion) {
+  let datos = null;
+  try {
+    datos = await respuesta.json();
+  } catch {
+    datos = null;
+  }
+  if (respuesta.status === 401 && sesion?.token) {
+    borrar(CLAVES.SESION);
+    window.dispatchEvent(new Event(EVENTO_SESION_EXPIRADA));
+  }
+  throw new ErrorApi(
+    respuesta.status,
+    datos?.detalle ?? "Ocurrió un error inesperado. Intente de nuevo.",
+    datos?.campo ?? null,
+  );
+}
+
+/**
+ * Descarga un archivo (PDF, Excel) de la API con la sesion del usuario.
+ *
+ * @param {string} ruta ruta que empieza por /api
+ * @returns {Promise<{blob: Blob, nombre: string}>} el contenido y el nombre que propone la API
+ * @throws {ErrorRed|ErrorApi}
+ */
+export async function solicitarArchivo(ruta) {
+  const sesion = leer(CLAVES.SESION);
+  const cabeceras = {};
+  if (sesion?.token) cabeceras.Authorization = `Bearer ${sesion.token}`;
+
+  let respuesta;
+  try {
+    respuesta = await fetch(URL_BASE + ruta, { method: "GET", headers: cabeceras });
+  } catch {
+    throw new ErrorRed();
+  }
+  if (!respuesta.ok) await lanzarErrorApi(respuesta, sesion);
+
+  const disposicion = respuesta.headers?.get?.("Content-Disposition") ?? "";
+  const nombre = /filename="?([^";]+)"?/.exec(disposicion)?.[1] ?? "reporte";
+  return { blob: await respuesta.blob(), nombre };
+}
+
 /**
  * Hace una solicitud JSON a la API.
  *
@@ -54,26 +99,12 @@ export async function solicitar(ruta, { metodo = "GET", cuerpo, conSesion = true
     throw new ErrorRed();
   }
 
-  let datos = null;
+  if (!respuesta.ok) await lanzarErrorApi(respuesta, sesion);
+
   try {
-    datos = await respuesta.json();
+    return await respuesta.json();
   } catch {
-    datos = null;
+    return null;
   }
-
-  if (!respuesta.ok) {
-    // Un 401 con token enviado significa sesion vencida (el JWT dura 1 hora): se avisa a la
-    // aplicacion para que cierre la sesion y lleve al inicio de sesion.
-    if (respuesta.status === 401 && sesion?.token) {
-      borrar(CLAVES.SESION);
-      window.dispatchEvent(new Event(EVENTO_SESION_EXPIRADA));
-    }
-    throw new ErrorApi(
-      respuesta.status,
-      datos?.detalle ?? "Ocurrió un error inesperado. Intente de nuevo.",
-      datos?.campo ?? null,
-    );
-  }
-
-  return datos;
 }
+

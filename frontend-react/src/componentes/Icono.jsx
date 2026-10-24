@@ -115,6 +115,12 @@ const TRAZOS = {
       <path d="M4 21h16" />
     </>
   ),
+  descarga: (
+    <>
+      <path d="M12 4v11M7 11l5 5 5-5" />
+      <path d="M5 20h14" />
+    </>
+  ),
   lista: <path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01" />,
   sinNube: (
     <>

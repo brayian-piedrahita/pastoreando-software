@@ -508,6 +508,18 @@ a {
   color: var(--suave);
 }
 
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.acciones .boton {
+  width: auto;
+  flex: 1 1 200px;
+}
+
 .dos-columnas {
   display: grid;
   gap: 24px;

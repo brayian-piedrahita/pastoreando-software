@@ -1,6 +1,7 @@
 // Reportes financieros (RF06): ingresos, costo estimado, utilidad proyectada con el margen del
 // proyecto y recaudo de cada contrato. Solo lo ven el propietario y el contador.
 
+import { useState } from "react";
 import { Navigate, useLocation } from "react-router";
 import Boton from "../componentes/Boton.jsx";
 import IndicadorCarga from "../componentes/IndicadorCarga.jsx";
@@ -9,7 +10,8 @@ import MensajeAviso from "../componentes/MensajeAviso.jsx";
 import TarjetaIndicador from "../componentes/TarjetaIndicador.jsx";
 import { useConsulta } from "../hooks/useConsulta.js";
 import { CLAVES } from "../servicios/almacenLocal.js";
-import { obtenerRentabilidad } from "../servicios/servicioReportes.js";
+import { descargarReporte, obtenerRentabilidad } from "../servicios/servicioReportes.js";
+import { guardarArchivo } from "../utilidades/descargas.js";
 import { formatoMoneda, formatoPorcentaje } from "../utilidades/formato.js";
 
 export default function PaginaReportes() {
@@ -17,6 +19,23 @@ export default function PaginaReportes() {
     clave: CLAVES.REPORTE,
   });
   const ubicacion = useLocation();
+  const [descargando, setDescargando] = useState(null);
+  const [errorDescarga, setErrorDescarga] = useState(null);
+
+  // Pide el archivo a la API y lo guarda. Solo se usa con conexion: el archivo siempre sale de
+  // los datos vigentes, no de la copia local.
+  async function descargar(formato) {
+    setDescargando(formato);
+    setErrorDescarga(null);
+    try {
+      const { blob, nombre } = await descargarReporte(formato);
+      guardarArchivo(blob, nombre);
+    } catch (e) {
+      setErrorDescarga(e.detalle ?? e.message);
+    } finally {
+      setDescargando(null);
+    }
+  }
 
   if (sinConexion) return <Navigate to="/sin-conexion" replace state={{ desde: ubicacion.pathname }} />;
   if (cargando && !datos) return <IndicadorCarga etiqueta="Cargando el reporte" />;
@@ -90,9 +109,28 @@ export default function PaginaReportes() {
           </table>
         </div>
       )}
-      <Boton variante="secundario" icono="refrescar" alHacerClic={recargar} cargando={cargando}>
-        ACTUALIZAR
-      </Boton>
+      {errorDescarga && <MensajeAviso tipo="error">{errorDescarga}</MensajeAviso>}
+      <div className="acciones">
+        <Boton
+          icono="descarga"
+          alHacerClic={() => descargar("pdf")}
+          cargando={descargando === "pdf"}
+          deshabilitado={desdeCache || descargando !== null}
+        >
+          DESCARGAR PDF
+        </Boton>
+        <Boton
+          icono="descarga"
+          alHacerClic={() => descargar("excel")}
+          cargando={descargando === "excel"}
+          deshabilitado={desdeCache || descargando !== null}
+        >
+          DESCARGAR EXCEL
+        </Boton>
+        <Boton variante="secundario" icono="refrescar" alHacerClic={recargar} cargando={cargando}>
+          ACTUALIZAR
+        </Boton>
+      </div>
     </section>
   );
 }
