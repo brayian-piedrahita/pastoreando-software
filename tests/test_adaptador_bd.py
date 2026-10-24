@@ -9,6 +9,7 @@ import sqlite3
 import pymysql
 import pytest
 
+from app import config
 from app.infrastructure.conexion_mysql import (
     FilaMySQL,
     _fecha_hora,
@@ -18,6 +19,7 @@ from app.infrastructure.conexion_mysql import (
     traducir_marcadores,
 )
 from app.infrastructure.db import ErrorIntegridad, obtener_bd
+from tests.conftest import _vaciar_mysql
 
 INSERTAR_LOTE_NEGATIVO = (
     "INSERT INTO LOTES (idPropietario, nombreLote, hectareas, capacidadCarga, "
@@ -137,3 +139,10 @@ def test_crear_tablas_es_idempotente(cliente):
     """CP-A15 | Adaptador MySQL | Crear tablas dos veces | La segunda no crea nada"""
     with obtener_bd().conexion() as con:
         assert crear_tablas(con) == []
+
+
+def test_no_se_vacia_una_base_que_no_es_de_prueba(monkeypatch):
+    """CP-A16 | Salvaguarda | Base real configurada para pruebas | Se detiene sin borrar"""
+    monkeypatch.setattr(config, "MYSQL_BASE", "pastoreando")
+    with pytest.raises(pytest.exit.Exception):
+        _vaciar_mysql()

@@ -27,7 +27,17 @@ CONTADOR = "sandra.bedoya@pastoreando.co"
 
 
 def _vaciar_mysql() -> None:
-    """Borra todas las tablas de la base MySQL de pruebas (aislamiento por prueba)."""
+    """Borra todas las tablas de la base MySQL de pruebas (aislamiento por prueba).
+
+    Por seguridad solo actua sobre bases cuyo nombre termina en _prueba: asi un
+    PASTOREANDO_MYSQL_BASE mal escrito nunca borra los datos reales.
+    """
+    if not config.MYSQL_BASE.endswith("_prueba"):
+        pytest.exit(
+            f"Se niega a vaciar la base '{config.MYSQL_BASE}': para correr las "
+            "pruebas con MySQL use una base cuyo nombre termine en _prueba.",
+            returncode=2,
+        )
     with obtener_bd().conexion() as con:
         con.execute("SET FOREIGN_KEY_CHECKS = 0")
         for fila in con.execute("SHOW TABLES").fetchall():
