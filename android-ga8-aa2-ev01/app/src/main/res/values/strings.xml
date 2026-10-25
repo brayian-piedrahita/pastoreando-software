@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Pastoreando Primera App</string>
+    <string name="titulo_bienvenida">Pastoreando</string>
+    <string name="mensaje_bienvenida">Bienvenido a Pastoreando: arriendo de lotes y control de ganado desde el campo.</string>
+    <string name="boton_saludar">Mostrar mensaje</string>
+    <string name="mensaje_toast">Hola desde Pastoreando</string>
+    <string name="mensaje_dispositivo">Pastoreando se ejecuta en Android %1$s (API %2$d).</string>
+</resources>
