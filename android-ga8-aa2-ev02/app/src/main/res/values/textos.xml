@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Inicio de sesion -->
+    <string name="login_subtitulo">Arriendo de lotes y control de ganado desde el campo</string>
+    <string name="hint_correo">Correo electrónico</string>
+    <string name="hint_clave">Contraseña</string>
+    <string name="ingresar">Ingresar</string>
+    <string name="ingresando">Conectando con el servidor…</string>
+    <string name="ayuda_servidor">La primera conexión puede tardar hasta un minuto mientras el servidor despierta.</string>
+
+    <!-- Lotes y semaforo de carga (RF04) -->
+    <string name="lotes_titulo">Lotes y carga animal</string>
+    <string name="usuario_rol">%1$s · %2$s</string>
+    <string name="calcular_costos">Calcular costos</string>
+    <string name="actualizar">Actualizar</string>
+    <string name="salir">Salir</string>
+    <string name="cargando_lotes">Cargando lotes…</string>
+    <string name="lotes_vacio">No hay lotes para mostrar.</string>
+    <string name="aviso_copia_local">Sin conexión: se muestran los últimos datos guardados en este teléfono.</string>
+    <string name="resumen_lotes">%1$d normal · %2$d en alerta · %3$d en sobrecarga</string>
+    <string name="resumen_sin_lotes">Sin lotes registrados</string>
+    <string name="nivel_normal">NORMAL</string>
+    <string name="nivel_alerta">ALERTA</string>
+    <string name="nivel_sobrecarga">SOBRECARGA</string>
+    <string name="detalle_lote">%1$s ha · %2$s</string>
+    <string name="carga_lote">%1$d de %2$d cabezas · %3$s</string>
+    <string name="excedente_lote">Excedente: %1$d cabezas</string>
+
+    <!-- Calculadora de costos (RF01 y RF02) -->
+    <string name="costos_titulo">Calculadora de costos</string>
+    <string name="costos_subtitulo">Costo por cabeza con margen del 20 %</string>
+    <string name="volver">Volver a lotes</string>
+    <string name="hint_alimentacion">Alimentación del lote (COP)</string>
+    <string name="hint_mantenimiento">Mantenimiento del lote (COP)</string>
+    <string name="hint_servicios">Servicios del lote (COP)</string>
+    <string name="hint_impuestos">Impuestos del lote (COP)</string>
+    <string name="hint_animales">Cantidad de animales</string>
+    <string name="proposito_titulo">Propósito del ganado</string>
+    <string name="proposito_carne">Carne (factor 1,00)</string>
+    <string name="proposito_leche">Leche (factor 1,10)</string>
+    <string name="proposito_doble">Doble propósito (factor 1,05)</string>
+    <string name="calcular">Calcular</string>
+    <string name="limpiar">Limpiar</string>
+    <string name="calculando">Calculando…</string>
+    <string name="resultado_titulo">Costo por cabeza</string>
+    <string name="total_lote">Total del lote: %1$s</string>
+    <string name="costo_base">Costo base por cabeza: %1$s</string>
+    <string name="factor_manejo">Factor de manejo: ×%1$s</string>
+    <string name="margen_utilidad">Margen del 20 %%: %1$s</string>
+    <string name="desglose_titulo">Desglose por rubro</string>
+    <string name="desglose_ayuda">Toca un rubro para ver su detalle</string>
+    <string name="rubro_alimentacion">Alimentación</string>
+    <string name="rubro_mantenimiento">Mantenimiento</string>
+    <string name="rubro_servicios">Servicios</string>
+    <string name="rubro_impuestos">Impuestos</string>
+    <string name="rubro_detalle">Valor del lote: %1$s\nPor cabeza: %2$s</string>
+    <string name="calculo_local">Sin conexión: el cálculo se hizo en el teléfono con las mismas reglas y no quedó en el historial.</string>
+
+    <!-- Roles -->
+    <string name="rol_propietario">Propietario</string>
+    <string name="rol_arrendatario">Arrendatario</string>
+    <string name="rol_tecnico">Técnico</string>
+    <string name="rol_contador">Contador</string>
+    <string name="rol_desconocido">Usuario</string>
+
+    <!-- Errores de red y del servidor -->
+    <string name="reintentar">Reintentar</string>
+    <string name="error_sin_conexion">No hay conexión con el servidor. Revisa tu señal e inténtalo de nuevo.</string>
+    <string name="error_tiempo_agotado">El servidor tardó demasiado en responder. Puede estar despertando; inténtalo de nuevo.</string>
+    <string name="error_credenciales">Correo o contraseña incorrectos.</string>
+    <string name="error_sesion_vencida">Tu sesión venció. Ingresa de nuevo.</string>
+    <string name="error_sin_permiso">Tu rol no tiene permiso para esta opción.</string>
+    <string name="error_no_encontrado">No se encontró lo que se pidió al servidor.</string>
+    <string name="error_datos">Algún dato no es válido. Revísalo e inténtalo de nuevo.</string>
+    <string name="error_servidor">El servidor tuvo un problema. Inténtalo más tarde.</string>
+    <string name="error_respuesta">No se pudo interpretar la respuesta del servidor.</string>
+
+    <!-- Validaciones de formulario -->
+    <string name="val_vacio">Este campo es obligatorio</string>
+    <string name="val_correo">Escribe un correo válido, por ejemplo nombre@dominio.co</string>
+    <string name="val_no_numerico">Escribe solo números</string>
+    <string name="val_negativo">Debe ser mayor o igual a 0</string>
+    <string name="val_positivo">Debe ser mayor a 0</string>
+    <string name="val_entero">Escribe un número entero</string>
+    <string name="val_sin_rubros">Al menos un rubro debe ser mayor a 0</string>
+    <string name="logo_descripcion">Logo de Pastoreando</string>
+</resources>

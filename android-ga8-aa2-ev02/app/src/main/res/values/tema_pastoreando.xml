@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tema unico en claro: fondo gris y acciones en verde agricola -->
+    <style name="Theme.Pastoreando.Campo" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/verde_agricola</item>
+        <item name="colorOnPrimary">@color/superficie</item>
+        <item name="colorError">@color/rojo_alerta</item>
+        <item name="android:windowBackground">@color/fondo_gris</item>
+        <item name="android:textColorPrimary">@color/texto_principal</item>
+        <item name="android:textColorSecondary">@color/texto_secundario</item>
+    </style>
+</resources>
