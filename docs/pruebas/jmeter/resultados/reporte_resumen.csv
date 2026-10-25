@@ -1,0 +1,7 @@
+Label,# Samples,Average,Min,Max,Std. Dev.,Error %,Throughput,Received KB/sec,Sent KB/sec,Avg. Bytes
+01 Salud del servicio (GET /api/salud),50,3,1,36,5.02,0.000%,4.36529,0.60,0.68,140.0
+02 Inicio de sesión del Contador (POST /api/auth/login),50,208,198,224,6.51,0.000%,4.29627,2.38,1.10,568.0
+03 Listado de lotes (GET /api/lotes),50,6,2,33,5.43,0.000%,4.38059,7.74,1.71,1810.0
+04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),50,14,7,36,6.24,0.000%,4.37828,3.50,2.45,817.8
+"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",50,2,1,8,1.44,0.000%,4.38904,0.96,0.69,223.0
+TOTAL,250,46,1,224,81.04,0.000%,19.33787,13.44,5.88,711.8
