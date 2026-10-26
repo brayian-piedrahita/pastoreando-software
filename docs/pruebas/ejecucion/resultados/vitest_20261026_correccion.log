@@ -1,0 +1,45 @@
+
+> pastoreando-frontend-react@0.1.0 test
+> vitest run
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.5 [39m[90mC:/Users/Usuario/pastoreando-software/frontend-react[39m
+
+ [32m✓[39m src/pruebas/permisos.test.js [2m([22m[2m2 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/pruebas/almacenLocal.test.js [2m([22m[2m4 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/pruebas/validaciones.test.js [2m([22m[2m17 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/pruebas/clienteApi.test.js [2m([22m[2m12 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m src/pruebas/formato.test.js [2m([22m[2m4 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosUtilidades.test.js [2m([22m[2m12 tests[22m[2m)[22m[32m 26[2mms[22m[39m
+ [32m✓[39m src/pruebas/servicios.test.js [2m([22m[2m5 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosServicios.test.js [2m([22m[2m8 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/pruebas/hooks.test.jsx [2m([22m[2m10 tests[22m[2m)[22m[33m 429[2mms[22m[39m
+ [32m✓[39m src/pruebas/useConsulta.test.jsx [2m([22m[2m6 tests[22m[2m)[22m[33m 511[2mms[22m[39m
+ [32m✓[39m src/pruebas/componentes.test.jsx [2m([22m[2m31 tests[22m[2m)[22m[33m 1525[2mms[22m[39m
+   [32m✓[39m FormularioCosto [2m(4)[22m
+     [33m[2m✓[22m[39m entrega los valores cuando son validos[33m 885[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx [2m([22m[2m34 tests[22m[2m)[22m[33m 3815[2mms[22m[39m
+   [32m✓[39m ganado del contrato [2m(4)[22m
+     [33m[2m✓[22m[39m el arrendatario ve los hatos, valida el formulario y registra uno nuevo con la alerta de carga[33m 395[2mms[22m[39m
+   [32m✓[39m recomendaciones [2m(3)[22m
+     [33m[2m✓[22m[39m el tecnico lee, agrega y elimina sus recomendaciones[33m 812[2mms[22m[39m
+   [32m✓[39m pagos [2m(4)[22m
+     [33m[2m✓[22m[39m el arrendatario valida y registra un pago que queda pendiente[33m 542[2mms[22m[39m
+ [32m✓[39m src/pruebas/navegacion.test.jsx [2m([22m[2m16 tests[22m[2m)[22m[33m 8389[2mms[22m[39m
+   [32m✓[39m acceso y rutas protegidas [2m(5)[22m
+     [33m[2m✓[22m[39m muestra el 401 de la API cuando las credenciales son incorrectas[33m 630[2mms[22m[39m
+     [33m[2m✓[22m[39m avisa cuando no hay conexion con el servidor[33m 616[2mms[22m[39m
+   [32m✓[39m recorrido completo de un propietario [2m(2)[22m
+     [33m[2m✓[22m[39m inicia sesion, calcula costos, revisa el monitoreo y cierra sesion[33m 2030[2mms[22m[39m
+     [33m[2m✓[22m[39m muestra el error 422 de la API junto al campo[33m 570[2mms[22m[39m
+   [32m✓[39m calculo de costos con datos que dejan de ser validos [2m(1)[22m
+     [33m[2m✓[22m[39m quita el resultado anterior cuando el siguiente intento no pasa la validacion[33m 1085[2mms[22m[39m
+   [32m✓[39m registro de usuarios [2m(3)[22m
+     [33m[2m✓[22m[39m registra al usuario y vuelve al inicio de sesion con un aviso de exito[33m 1456[2mms[22m[39m
+     [33m[2m✓[22m[39m muestra el 409 de la API junto al campo cedula[33m 1435[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m13 passed[39m[22m[90m (13)[39m
+[2m      Tests [22m [1m[32m161 passed[39m[22m[90m (161)[39m
+[2m   Start at [22m 04:50:05
+[2m   Duration [22m 34.95s[2m (environment 76%, setup 16%, tests 5%, import 3%, transform 1%)[22m
+

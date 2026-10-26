@@ -1,0 +1,174 @@
+Mon Oct 26 00:24:35 HPS 2026
+v24.22.1
+
+> pastoreando-frontend-react@0.1.0 test
+> vitest run --run --reporter=verbose
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.5 [39m[90mC:/Users/Usuario/pastoreando-software/frontend-react[39m
+
+ [32m✓[39m src/pruebas/almacenLocal.test.js[2m > [22malmacenLocal[2m > [22mguarda y lee valores JSON[32m 7[2mms[22m[39m
+ [32m✓[39m src/pruebas/almacenLocal.test.js[2m > [22malmacenLocal[2m > [22mdevuelve el valor por defecto si la clave no existe o el JSON esta danado[32m 2[2mms[22m[39m
+ [32m✓[39m src/pruebas/almacenLocal.test.js[2m > [22malmacenLocal[2m > [22mborra una clave[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/almacenLocal.test.js[2m > [22malmacenLocal[2m > [22mno lanza errores si el almacenamiento esta bloqueado[32m 3[2mms[22m[39m
+ [32m✓[39m src/pruebas/permisos.test.js[2m > [22mpermisos por rol[2m > [22mel tecnico no calcula costos y los demas roles si[32m 4[2mms[22m[39m
+ [32m✓[39m src/pruebas/permisos.test.js[2m > [22mpermisos por rol[2m > [22msolo tecnico y contador se registran con codigo de profesional[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/validaciones.test.js[2m > [22mvalidarLogin[2m > [22macepta un correo y una contrasena[32m 4[2mms[22m[39m
+ [32m✓[39m src/pruebas/validaciones.test.js[2m > [22mvalidarLogin[2m > [22msenala los campos vacios o con formato incorrecto[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/validaciones.test.js[2m > [22mvalidarContrasenaNueva[2m > [22mrechaza corta1[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/validaciones.test.js[2m > [22mvalidarContrasenaNueva[2m > [22mrechaza soloLetrasAqui[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/validaciones.test.js[2m > [22mvalidarContrasenaNueva[2m > [22mrechaza 12345678[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/validaciones.test.js[2m > [22mvalidarContrasenaNueva[2m > [22mrechaza a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1[32m 0[2mms[22m[39m
+ [32m✓[39m src/pruebas/validaciones.test.js[2m > [22mvalidarContrasenaNueva[2m > [22macepta letras y numeros desde 8 caracteres[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/validaciones.test.js[2m > [22mvalidarRegistro[2m > [22macepta un registro completo de arrendatario[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/validaciones.test.js[2m > [22mvalidarRegistro[2m > [22macepta tildes y enes en los nombres[32m 0[2mms[22m[39m
+ [32m✓[39m src/pruebas/validaciones.test.js[2m > [22mvalidarRegistro[2m > [22mrechaza numeros en el nombre y cedulas fuera de 6 a 12 digitos[32m 0[2mms[22m[39m
+ [32m✓[39m src/pruebas/validaciones.test.js[2m > [22mvalidarRegistro[2m > [22mexige el codigo de profesional solo a tecnico y contador[32m 0[2mms[22m[39m
+ [32m✓[39m src/pruebas/validaciones.test.js[2m > [22mvalidarRegistro[2m > [22musa la concordancia correcta en los apellidos[32m 0[2mms[22m[39m
+ [32m✓[39m src/pruebas/validaciones.test.js[2m > [22mvalidarRegistro[2m > [22mrechaza un rol vacio o inexistente[32m 0[2mms[22m[39m
+ [32m✓[39m src/pruebas/validaciones.test.js[2m > [22mvalidarCosto[2m > [22macepta valores correctos y el cero en un rubro[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/validaciones.test.js[2m > [22mvalidarCosto[2m > [22mrechaza vacios, negativos y textos[32m 0[2mms[22m[39m
+ [32m✓[39m src/pruebas/validaciones.test.js[2m > [22mvalidarCosto[2m > [22mexige una cantidad de animales entera y mayor que cero[32m 0[2mms[22m[39m
+ [32m✓[39m src/pruebas/validaciones.test.js[2m > [22mvalidarCosto[2m > [22mrechaza un proposito que no existe[32m 0[2mms[22m[39m
+ [32m✓[39m src/pruebas/clienteApi.test.js[2m > [22msolicitar[2m > [22mdevuelve el JSON de una respuesta correcta[32m 8[2mms[22m[39m
+ [32m✓[39m src/pruebas/clienteApi.test.js[2m > [22msolicitar[2m > [22menvia el token guardado en la cabecera Authorization[32m 2[2mms[22m[39m
+ [32m✓[39m src/pruebas/clienteApi.test.js[2m > [22msolicitar[2m > [22mserializa el cuerpo como JSON[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/clienteApi.test.js[2m > [22msolicitar[2m > [22mtraduce el error {detalle, campo} de la API a ErrorApi[32m 2[2mms[22m[39m
+ [32m✓[39m src/pruebas/clienteApi.test.js[2m > [22msolicitar[2m > [22musa un mensaje general si el error no trae JSON[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/clienteApi.test.js[2m > [22msolicitar[2m > [22mlanza ErrorRed cuando fetch falla[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/clienteApi.test.js[2m > [22msolicitar[2m > [22mun 401 con sesion borra el token y avisa con un evento[32m 2[2mms[22m[39m
+ [32m✓[39m src/pruebas/clienteApi.test.js[2m > [22msolicitar[2m > [22mun 401 sin sesion (credenciales malas) no dispara el evento[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/clienteApi.test.js[2m > [22msolicitarArchivo[2m > [22mdevuelve el contenido y el nombre que propone la API, enviando el token[32m 2[2mms[22m[39m
+ [32m✓[39m src/pruebas/clienteApi.test.js[2m > [22msolicitarArchivo[2m > [22musa un nombre general si la API no propone ninguno[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/clienteApi.test.js[2m > [22msolicitarArchivo[2m > [22mtraduce el error de la API a ErrorApi y la falta de red a ErrorRed[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/clienteApi.test.js[2m > [22msolicitarArchivo[2m > [22mun 401 con sesion borra el token y avisa con un evento[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/servicios.test.js[2m > [22mservicioAuth[2m > [22miniciarSesion devuelve token y usuario[32m 6[2mms[22m[39m
+ [32m✓[39m src/pruebas/servicios.test.js[2m > [22mservicioAuth[2m > [22mregistrarUsuario envia el codigo nulo cuando no aplica[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/servicios.test.js[2m > [22mservicioLotes y servicioCostos[2m > [22mlistarLotes consulta GET /api/lotes[32m 2[2mms[22m[39m
+ [32m✓[39m src/pruebas/servicios.test.js[2m > [22mservicioLotes y servicioCostos[2m > [22mcalcularCosto convierte los textos del formulario en numeros[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/servicios.test.js[2m > [22mservicioLotes y servicioCostos[2m > [22mlistarEstrategias devuelve los propositos[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/formato.test.js[2m > [22mformatoMoneda[2m > [22musa el formato colombiano con dos decimales[32m 10[2mms[22m[39m
+ [32m✓[39m src/pruebas/formato.test.js[2m > [22mformatoMoneda[2m > [22mdevuelve una raya cuando no hay valor[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/formato.test.js[2m > [22mformatoPorcentaje y formatoNumero[2m > [22musa coma decimal y un decimal como maximo[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/formato.test.js[2m > [22mformatoPorcentaje y formatoNumero[2m > [22mdevuelve una raya cuando no hay valor[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosServicios.test.js[2m > [22mservicioContratos[2m > [22mlee contratos, un contrato, su documento y su ganado con la sesion[32m 8[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosServicios.test.js[2m > [22mservicioContratos[2m > [22mcrearGanado envia la cantidad como numero y la raza sin espacios sobrantes[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosServicios.test.js[2m > [22mservicioContratos[2m > [22meliminarGanado usa DELETE y acepta la respuesta vacia (204)[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosServicios.test.js[2m > [22mservicioPagos[2m > [22mlista, registra con monto numerico y resuelve con PUT[32m 2[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosServicios.test.js[2m > [22mservicioFirmas, servicioRecomendaciones y servicioReportes[2m > [22mconsulta y firma el contrato[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosServicios.test.js[2m > [22mservicioFirmas, servicioRecomendaciones y servicioReportes[2m > [22mlista, crea (sin espacios sobrantes) y elimina recomendaciones[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosServicios.test.js[2m > [22mservicioFirmas, servicioRecomendaciones y servicioReportes[2m > [22mpide el reporte de rentabilidad[32m 0[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosServicios.test.js[2m > [22mservicioFirmas, servicioRecomendaciones y servicioReportes[2m > [22mdescarga el reporte en PDF y en Excel con la ruta de cada formato[32m 2[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosUtilidades.test.js[2m > [22mvalidarGanado[2m > [22macepta un hato correcto[32m 4[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosUtilidades.test.js[2m > [22mvalidarGanado[2m > [22macepta razas con tilde, espacio o guion[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosUtilidades.test.js[2m > [22mvalidarGanado[2m > [22mreporta cada campo vacio o invalido[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosUtilidades.test.js[2m > [22mvalidarGanado[2m > [22mrechaza razas con numeros, cortas o largas y cantidades no enteras o menores a 1[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosUtilidades.test.js[2m > [22mvalidarPago[2m > [22macepta un pago correcto[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosUtilidades.test.js[2m > [22mvalidarPago[2m > [22mexige fecha, monto positivo y un metodo de la lista[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosUtilidades.test.js[2m > [22mvalidarRecomendacion[2m > [22mpide entre 10 y 500 caracteres[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosUtilidades.test.js[2m > [22mpermisos por rol[2m > [22mrefleja lo que la API autoriza[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosUtilidades.test.js[2m > [22mformatoFecha[2m > [22mescribe la fecha en espanol sin correr el dia por la zona horaria[32m 14[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosUtilidades.test.js[2m > [22mformatoFecha[2m > [22mdevuelve raya cuando el valor no es una fecha[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosUtilidades.test.js[2m > [22mformatoFecha[2m > [22mformatoFechaHora incluye la hora y cae a fecha simple si no hay T[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosUtilidades.test.js[2m > [22mguardarArchivo[2m > [22mcrea un enlace temporal con el nombre indicado, lo pulsa y lo libera[32m 15[2mms[22m[39m
+ [32m✓[39m src/pruebas/hooks.test.jsx[2m > [22museSesion[2m > [22mfalla con un mensaje claro si falta el proveedor[32m 20[2mms[22m[39m
+ [32m✓[39m src/pruebas/hooks.test.jsx[2m > [22museSesion[2m > [22miniciarSesion guarda la sesion y cerrarSesion la borra junto con la copia de lotes[32m 8[2mms[22m[39m
+ [32m✓[39m src/pruebas/hooks.test.jsx[2m > [22museSesion[2m > [22mrestaura la sesion guardada al recargar[32m 2[2mms[22m[39m
+ [32m✓[39m src/pruebas/hooks.test.jsx[2m > [22museConexion[2m > [22msigue los eventos online y offline y limpia los escuchadores[32m 4[2mms[22m[39m
+ [32m✓[39m src/pruebas/hooks.test.jsx[2m > [22museFormulario[2m > [22mactualiza el valor por el atributo name y borra el error de ese campo[32m 2[2mms[22m[39m
+ [32m✓[39m src/pruebas/useConsulta.test.jsx[2m > [22museConsulta[2m > [22mentrega los datos y termina de cargar[32m 108[2mms[22m[39m
+ [32m✓[39m src/pruebas/useConsulta.test.jsx[2m > [22museConsulta[2m > [22mcon clave guarda la copia del usuario[32m 76[2mms[22m[39m
+ [32m✓[39m src/pruebas/hooks.test.jsx[2m > [22museLotes[2m > [22mconsulta los lotes y guarda una copia local[32m 66[2mms[22m[39m
+ [32m✓[39m src/pruebas/hooks.test.jsx[2m > [22museLotes[2m > [22msin red entrega la copia local del mismo usuario[32m 79[2mms[22m[39m
+ [32m✓[39m src/pruebas/useConsulta.test.jsx[2m > [22museConsulta[2m > [22msin red usa la copia guardada del mismo usuario[32m 80[2mms[22m[39m
+ [32m✓[39m src/pruebas/hooks.test.jsx[2m > [22museLotes[2m > [22msin red y sin copia propia informa sinConexion[32m 80[2mms[22m[39m
+ [32m✓[39m src/pruebas/useConsulta.test.jsx[2m > [22museConsulta[2m > [22msin red y sin copia, o con la copia de otro usuario, reporta sinConexion[32m 79[2mms[22m[39m
+ [32m✓[39m src/pruebas/useConsulta.test.jsx[2m > [22museConsulta[2m > [22mun error de la API no usa la copia y se entrega tal cual[32m 77[2mms[22m[39m
+ [32m✓[39m src/pruebas/hooks.test.jsx[2m > [22museLotes[2m > [22mun error de la API no usa la copia local[32m 79[2mms[22m[39m
+ [32m✓[39m src/pruebas/hooks.test.jsx[2m > [22museLotes[2m > [22mvuelve a consultar cuando regresa la conexion[32m 93[2mms[22m[39m
+ [32m✓[39m src/pruebas/useConsulta.test.jsx[2m > [22museConsulta[2m > [22mrecargar vuelve a consultar y las dependencias tambien[32m 80[2mms[22m[39m
+ [32m✓[39m src/pruebas/componentes.test.jsx[2m > [22mMedidorCarga[2m > [22men nivel NORMAL muestra 40 % con la clase medidor--verde[32m 146[2mms[22m[39m
+ [32m✓[39m src/pruebas/componentes.test.jsx[2m > [22mMedidorCarga[2m > [22men nivel ALERTA muestra 86.7 % con la clase medidor--naranja[32m 11[2mms[22m[39m
+ [32m✓[39m src/pruebas/componentes.test.jsx[2m > [22mMedidorCarga[2m > [22men nivel SOBRECARGA muestra 120 % con la clase medidor--rojo[32m 8[2mms[22m[39m
+ [32m✓[39m src/pruebas/componentes.test.jsx[2m > [22mMedidorCarga[2m > [22mno llena el circulo mas alla del 100 % pero muestra el valor real[32m 10[2mms[22m[39m
+ [32m✓[39m src/pruebas/componentes.test.jsx[2m > [22mInsigniaNivel y AvisoNivel[2m > [22mla insignia muestra el nivel como texto[32m 4[2mms[22m[39m
+ [32m✓[39m src/pruebas/componentes.test.jsx[2m > [22mInsigniaNivel y AvisoNivel[2m > [22mel aviso no se dibuja con nivel NORMAL[32m 2[2mms[22m[39m
+ [32m✓[39m src/pruebas/componentes.test.jsx[2m > [22mInsigniaNivel y AvisoNivel[2m > [22mla sobrecarga se anuncia como alerta y la alerta como estado[32m 15[2mms[22m[39m
+ [32m✓[39m src/pruebas/componentes.test.jsx[2m > [22mBoton[2m > [22mllama a alHacerClic[32m 58[2mms[22m[39m
+ [32m✓[39m src/pruebas/componentes.test.jsx[2m > [22mBoton[2m > [22mmientras carga queda deshabilitado y no admite un segundo clic[32m 63[2mms[22m[39m
+ [32m✓[39m src/pruebas/componentes.test.jsx[2m > [22mCampoFormulario[2m > [22masocia la etiqueta con el campo y muestra el error[32m 15[2mms[22m[39m
+ [32m✓[39m src/pruebas/componentes.test.jsx[2m > [22mCampoFormulario[2m > [22msin error no marca el campo como invalido[32m 3[2mms[22m[39m
+ [32m✓[39m src/pruebas/navegacion.test.jsx[2m > [22macceso y rutas protegidas[2m > [22msin sesion cualquier ruta privada lleva al inicio de sesion[32m 213[2mms[22m[39m
+ [32m✓[39m src/pruebas/componentes.test.jsx[2m > [22mCampoClave[2m > [22mel ojo alterna entre contrasena oculta y visible[32m 81[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx[2m > [22mmenu y rutas por rol[2m > [22mel menu de { id_usuario: 1, …(5) } muestra contratos y true los reportes[32m 212[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx[2m > [22mmenu y rutas por rol[2m > [22mel menu de { id_usuario: 4, …(5) } muestra contratos y true los reportes[32m 30[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx[2m > [22mmenu y rutas por rol[2m > [22mel menu de { id_usuario: 2, …(5) } muestra contratos y false los reportes[32m 22[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx[2m > [22mmenu y rutas por rol[2m > [22mel menu de { id_usuario: 3, nombre: 'Laura', …(4) } muestra contratos y false los reportes[32m 22[2mms[22m[39m
+ [32m✓[39m src/pruebas/navegacion.test.jsx[2m > [22macceso y rutas protegidas[2m > [22mmuestra los errores de validacion sin llamar a la API[32m 99[2mms[22m[39m
+ [32m✓[39m src/pruebas/componentes.test.jsx[2m > [22mPanelSugerencias[2m > [22moculta la lista hasta pulsar el boton[32m 62[2mms[22m[39m
+ [32m✓[39m src/pruebas/componentes.test.jsx[2m > [22mPanelSugerencias[2m > [22mno se dibuja sin sugerencias[32m 1[2mms[22m[39m
+ [32m✓[39m src/pruebas/componentes.test.jsx[2m > [22mTarjetaLote[2m > [22mmuestra los datos del lote y marca la sobrecarga con borde punteado[32m 11[2mms[22m[39m
+ [32m✓[39m src/pruebas/componentes.test.jsx[2m > [22mDesgloseCostos, ResultadoCosto y SelectorOpciones[2m > [22mdibuja los cuatro rubros por unidad ganadera sin recalcular[32m 16[2mms[22m[39m
+ [32m✓[39m src/pruebas/componentes.test.jsx[2m > [22mDesgloseCostos, ResultadoCosto y SelectorOpciones[2m > [22men la vista de lote usa el valor de todo el lote[32m 7[2mms[22m[39m
+ [32m✓[39m src/pruebas/componentes.test.jsx[2m > [22mDesgloseCostos, ResultadoCosto y SelectorOpciones[2m > [22mantes del calculo muestra los rubros sin valores[32m 11[2mms[22m[39m
+ [32m✓[39m src/pruebas/componentes.test.jsx[2m > [22mDesgloseCostos, ResultadoCosto y SelectorOpciones[2m > [22mResultadoCosto da formato de moneda y la nota del margen[32m 2[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx[2m > [22mmenu y rutas por rol[2m > [22mun arrendatario que abre /reportes vuelve al panel[32m 45[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx[2m > [22mlista de contratos[2m > [22mmuestra una tarjeta por contrato con sus valores y estado[32m 58[2mms[22m[39m
+ [32m✓[39m src/pruebas/componentes.test.jsx[2m > [22mDesgloseCostos, ResultadoCosto y SelectorOpciones[2m > [22mSelectorOpciones avisa el valor elegido[32m 58[2mms[22m[39m
+ [32m✓[39m src/pruebas/componentes.test.jsx[2m > [22mFormularioCosto[2m > [22mmuestra los errores y no calcula si faltan datos[32m 64[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx[2m > [22mlista de contratos[2m > [22mVER DETALLE abre el contrato elegido[32m 131[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx[2m > [22mlista de contratos[2m > [22msin red muestra la copia guardada y lo avisa[32m 38[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx[2m > [22mlista de contratos[2m > [22msin red y sin copia lleva a la pantalla de sin conexion[32m 24[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx[2m > [22mlista de contratos[2m > [22mal cerrar sesion se borran las copias de contratos y reportes[32m 79[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx[2m > [22mdetalle del contrato[2m > [22mun contrato inexistente muestra el mensaje de la API y un enlace de regreso[32m 49[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx[2m > [22mdetalle del contrato[2m > [22men un contrato finalizado no se ofrece registrar ganado ni pagos[32m 54[2mms[22m[39m
+ [32m✓[39m src/pruebas/navegacion.test.jsx[2m > [22macceso y rutas protegidas[2m > [22mmuestra el 401 de la API cuando las credenciales son incorrectas[33m 591[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx[2m > [22mganado del contrato[2m > [22mel arrendatario ve los hatos, valida el formulario y registra uno nuevo con la alerta de carga[33m 476[2mms[22m[39m
+ [32m✓[39m src/pruebas/componentes.test.jsx[2m > [22mFormularioCosto[2m > [22mentrega los valores cuando son validos[33m 929[2mms[22m[39m
+ [32m✓[39m src/pruebas/componentes.test.jsx[2m > [22mFormularioCosto[2m > [22mmuestra el error que la API asocia a un campo[32m 11[2mms[22m[39m
+ [32m✓[39m src/pruebas/componentes.test.jsx[2m > [22mBannerConexion y MensajeAviso[2m > [22mel banner aparece solo cuando no hay red[32m 7[2mms[22m[39m
+ [32m✓[39m src/pruebas/componentes.test.jsx[2m > [22mBannerConexion y MensajeAviso[2m > [22mMensajeAviso usa alert para errores y no se dibuja vacio[32m 4[2mms[22m[39m
+ [32m✓[39m src/pruebas/componentes.test.jsx[2m > [22mLimiteError[2m > [22mmuestra el aviso en vez de dejar la pantalla en blanco y permite reintentar[32m 71[2mms[22m[39m
+ [32m✓[39m src/pruebas/componentes.test.jsx[2m > [22mRutaProtegida y MenuLateral[2m > [22msin sesion redirige a /login[32m 8[2mms[22m[39m
+ [32m✓[39m src/pruebas/componentes.test.jsx[2m > [22mRutaProtegida y MenuLateral[2m > [22mcon sesion y rol permitido muestra el contenido[32m 2[2mms[22m[39m
+ [32m✓[39m src/pruebas/componentes.test.jsx[2m > [22mRutaProtegida y MenuLateral[2m > [22mcon sesion pero sin el rol redirige al panel[32m 2[2mms[22m[39m
+ [32m✓[39m src/pruebas/componentes.test.jsx[2m > [22mRutaProtegida y MenuLateral[2m > [22mel menu oculta el modulo contable al tecnico[32m 10[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx[2m > [22mganado del contrato[2m > [22mmuestra el error de la API cuando rechaza el hato[33m 306[2mms[22m[39m
+ [32m✓[39m src/pruebas/navegacion.test.jsx[2m > [22macceso y rutas protegidas[2m > [22mavisa cuando no hay conexion con el servidor[33m 662[2mms[22m[39m
+ [32m✓[39m src/pruebas/navegacion.test.jsx[2m > [22macceso y rutas protegidas[2m > [22mel boton REGISTRARSE lleva al formulario de registro[32m 50[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx[2m > [22mganado del contrato[2m > [22melimina un hato solo despues de confirmar[32m 266[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx[2m > [22mganado del contrato[2m > [22mel propietario ve el ganado pero no puede registrar ni eliminar[32m 48[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx[2m > [22mrecomendaciones[2m > [22mel tecnico lee, agrega y elimina sus recomendaciones[33m 802[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx[2m > [22mrecomendaciones[2m > [22mel propietario las lee pero no tiene formulario ni boton de borrar[32m 128[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx[2m > [22mrecomendaciones[2m > [22mun hato sin recomendaciones lo indica[32m 138[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx[2m > [22mdocumento y firma[2m > [22mmuestra el texto con su huella y el arrendatario firma hasta completar ambas partes[32m 121[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx[2m > [22mdocumento y firma[2m > [22muna firma anterior al ultimo cambio del ganado se marca como desactualizada[32m 30[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx[2m > [22mdocumento y firma[2m > [22msin ganado la API no genera el documento y no se ofrece firmar[32m 49[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx[2m > [22mdocumento y firma[2m > [22mel tecnico y el contador leen el documento pero no pueden firmar[32m 48[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx[2m > [22mdocumento y firma[2m > [22mmuestra el mensaje de la API si la firma es rechazada[32m 83[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx[2m > [22mpagos[2m > [22mlista los pagos con sus totales por estado[32m 39[2mms[22m[39m
+ [32m✓[39m src/pruebas/navegacion.test.jsx[2m > [22mrecorrido completo de un propietario[2m > [22minicia sesion, calcula costos, revisa el monitoreo y cierra sesion[33m 2158[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx[2m > [22mpagos[2m > [22mel arrendatario valida y registra un pago que queda pendiente[33m 584[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx[2m > [22mpagos[2m > [22mel propietario confirma un pago pendiente y el estado cambia[32m 79[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx[2m > [22mpagos[2m > [22mel contador puede rechazar y se muestra el error si la API lo impide[32m 106[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx[2m > [22mreportes financieros[2m > [22mel propietario ve los totales y la rentabilidad por contrato[32m 52[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx[2m > [22mreportes financieros[2m > [22mdescarga el reporte en PDF y en Excel y entrega el archivo con el nombre de la API[32m 168[2mms[22m[39m
+ [32m✓[39m src/pruebas/navegacion.test.jsx[2m > [22mrecorrido completo de un propietario[2m > [22mmuestra el error 422 de la API junto al campo[33m 597[2mms[22m[39m
+ [32m✓[39m src/pruebas/navegacion.test.jsx[2m > [22mpermisos por rol[2m > [22mel tecnico no ve el modulo contable y /costos lo devuelve al panel[32m 39[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx[2m > [22mreportes financieros[2m > [22msi la API rechaza la descarga muestra el motivo y no guarda nada[32m 108[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx[2m > [22mreportes financieros[2m > [22msin red las descargas quedan deshabilitadas porque el archivo sale de datos vigentes[32m 43[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx[2m > [22mreportes financieros[2m > [22msin red usa el ultimo reporte guardado[32m 20[2mms[22m[39m
+ [32m✓[39m src/pruebas/modulosPaginas.test.jsx[2m > [22mreportes financieros[2m > [22msin contratos lo indica en lugar de dibujar una tabla vacia[32m 13[2mms[22m[39m
+ [32m✓[39m src/pruebas/navegacion.test.jsx[2m > [22mregistro de usuarios[2m > [22mvalida el formulario y pide el codigo solo a roles profesionales[32m 117[2mms[22m[39m
+ [32m✓[39m src/pruebas/navegacion.test.jsx[2m > [22mregistro de usuarios[2m > [22mregistra al usuario y vuelve al inicio de sesion con un aviso de exito[33m 1475[2mms[22m[39m
+ [32m✓[39m src/pruebas/navegacion.test.jsx[2m > [22mregistro de usuarios[2m > [22mmuestra el 409 de la API junto al campo cedula[33m 1450[2mms[22m[39m
+ [32m✓[39m src/pruebas/navegacion.test.jsx[2m > [22mresiliencia sin conexion (RNF01)[2m > [22msin red y con copia local muestra los lotes guardados con su aviso[32m 35[2mms[22m[39m
+ [32m✓[39m src/pruebas/navegacion.test.jsx[2m > [22mresiliencia sin conexion (RNF01)[2m > [22msin red y sin copia lleva a la pantalla de error de conexion y permite volver[32m 80[2mms[22m[39m
+ [32m✓[39m src/pruebas/navegacion.test.jsx[2m > [22mresiliencia sin conexion (RNF01)[2m > [22muna sesion vencida (401) cierra la sesion y lleva al inicio de sesion[32m 38[2mms[22m[39m
+ [32m✓[39m src/pruebas/navegacion.test.jsx[2m > [22mruta inexistente[2m > [22mmuestra la pagina de no encontrada con un enlace al panel[32m 18[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m13 passed[39m[22m[90m (13)[39m
+[2m      Tests [22m [1m[32m159 passed[39m[22m[90m (159)[39m
+[2m   Start at [22m 00:24:41
+[2m   Duration [22m 42.40s[2m (environment 75%, setup 17%, tests 4%, import 3%, transform 1%)[22m
+

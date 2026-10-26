@@ -1,0 +1,251 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1793003281335,47,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-1,text,true,,140,160,1,1,http://127.0.0.1:8000/api/salud,43,0,16
+1793003281720,6,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-2,text,true,,140,160,2,2,http://127.0.0.1:8000/api/salud,6,0,1
+1793003281685,210,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-1,text,true,,568,262,2,2,http://127.0.0.1:8000/api/auth/login,210,0,0
+1793003282221,4,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-3,text,true,,140,160,3,3,http://127.0.0.1:8000/api/salud,4,0,1
+1793003282216,9,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-1,text,true,,2255,400,3,3,http://127.0.0.1:8000/api/lotes,9,0,0
+1793003282028,212,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-2,text,true,,568,262,3,3,http://127.0.0.1:8000/api/auth/login,212,0,0
+1793003282526,18,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-1,text,true,,817,574,4,4,http://127.0.0.1:8000/api/costos/calcular,18,0,0
+1793003282543,6,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-2,text,true,,2255,400,4,4,http://127.0.0.1:8000/api/lotes,6,0,0
+1793003282723,3,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-4,text,true,,140,160,4,4,http://127.0.0.1:8000/api/salud,3,0,1
+1793003282526,213,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-3,text,true,,568,262,4,4,http://127.0.0.1:8000/api/auth/login,212,0,0
+1793003282847,99,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-1,text,true,,223,162,5,5,http://127.0.0.1:8000/api/auth/yo,99,0,0
+1793003282853,108,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-2,text,true,,817,574,5,5,http://127.0.0.1:8000/api/costos/calcular,108,0,0
+1793003283041,6,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-3,text,true,,2255,400,5,5,http://127.0.0.1:8000/api/lotes,6,0,0
+1793003283233,2,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-5,text,true,,140,160,5,5,http://127.0.0.1:8000/api/salud,2,0,1
+1793003283028,219,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-4,text,true,,568,262,5,5,http://127.0.0.1:8000/api/auth/login,219,0,0
+1793003283249,1,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-1,text,true,,140,160,5,5,http://127.0.0.1:8000/api/salud,1,0,0
+1793003283262,2,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-2,text,true,,223,162,5,5,http://127.0.0.1:8000/api/auth/yo,2,0,0
+1793003283348,17,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-3,text,true,,817,574,5,5,http://127.0.0.1:8000/api/costos/calcular,17,0,0
+1793003283548,6,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-4,text,true,,2255,400,6,6,http://127.0.0.1:8000/api/lotes,6,0,0
+1793003283565,2,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-2,text,true,,140,160,6,6,http://127.0.0.1:8000/api/salud,2,0,0
+1793003283668,1,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-3,text,true,,223,162,6,6,http://127.0.0.1:8000/api/auth/yo,1,0,0
+1793003283719,2,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-6,text,true,,140,160,6,6,http://127.0.0.1:8000/api/salud,2,0,0
+1793003283537,214,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-5,text,true,,568,262,6,6,http://127.0.0.1:8000/api/auth/login,214,0,0
+1793003283553,202,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-1,text,true,,568,262,6,6,http://127.0.0.1:8000/api/auth/login,202,0,0
+1793003283858,21,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-4,text,true,,817,574,6,6,http://127.0.0.1:8000/api/costos/calcular,21,0,0
+1793003283970,3,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-3,text,true,,140,160,7,7,http://127.0.0.1:8000/api/salud,3,0,0
+1793003284053,3,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-5,text,true,,2255,400,7,7,http://127.0.0.1:8000/api/lotes,3,0,0
+1793003284058,2,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-1,text,true,,2255,400,7,7,http://127.0.0.1:8000/api/lotes,2,0,0
+1793003283869,232,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-2,text,true,,568,262,7,7,http://127.0.0.1:8000/api/auth/login,232,0,0
+1793003284181,2,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-4,text,true,,223,162,7,7,http://127.0.0.1:8000/api/auth/yo,2,0,0
+1793003284021,202,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-6,text,true,,568,262,7,7,http://127.0.0.1:8000/api/auth/login,202,0,0
+1793003284233,2,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-7,text,true,,140,160,7,7,http://127.0.0.1:8000/api/salud,2,0,1
+1793003284357,23,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-5,text,true,,817,574,7,7,http://127.0.0.1:8000/api/costos/calcular,23,0,0
+1793003284363,35,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-1,text,true,,817,574,7,7,http://127.0.0.1:8000/api/costos/calcular,35,0,0
+1793003284402,5,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-2,text,true,,2255,400,7,7,http://127.0.0.1:8000/api/lotes,5,0,0
+1793003284274,209,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-3,text,true,,568,262,8,8,http://127.0.0.1:8000/api/auth/login,209,0,0
+1793003284483,2,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-4,text,true,,140,160,8,8,http://127.0.0.1:8000/api/salud,2,0,0
+1793003284525,8,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-6,text,true,,2255,400,8,8,http://127.0.0.1:8000/api/lotes,8,0,0
+1793003284681,2,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-5,text,true,,223,162,8,8,http://127.0.0.1:8000/api/auth/yo,2,0,0
+1793003284700,1,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-1,text,true,,223,162,8,8,http://127.0.0.1:8000/api/auth/yo,1,0,0
+1793003284723,3,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-8,text,true,,140,160,8,8,http://127.0.0.1:8000/api/salud,3,0,1
+1793003284708,19,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-2,text,true,,817,574,8,8,http://127.0.0.1:8000/api/costos/calcular,19,0,0
+1793003284536,209,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-7,text,true,,568,262,8,8,http://127.0.0.1:8000/api/auth/login,209,0,0
+1793003284784,6,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-3,text,true,,2255,400,8,8,http://127.0.0.1:8000/api/lotes,6,0,0
+1793003284835,11,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-6,text,true,,817,574,8,8,http://127.0.0.1:8000/api/costos/calcular,11,0,0
+1793003284985,2,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-5,text,true,,140,160,9,9,http://127.0.0.1:8000/api/salud,2,0,0
+1793003284787,206,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-4,text,true,,568,262,9,9,http://127.0.0.1:8000/api/auth/login,206,0,0
+1793003285002,2,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-1,text,true,,140,160,9,9,http://127.0.0.1:8000/api/salud,2,0,0
+1793003285029,1,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-2,text,true,,223,162,9,9,http://127.0.0.1:8000/api/auth/yo,1,0,0
+1793003285046,3,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-7,text,true,,2255,400,9,9,http://127.0.0.1:8000/api/lotes,3,0,0
+1793003285092,11,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-3,text,true,,818,574,9,9,http://127.0.0.1:8000/api/costos/calcular,11,0,0
+1793003285147,2,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-6,text,true,,223,162,9,9,http://127.0.0.1:8000/api/auth/yo,2,0,0
+1793003285224,2,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-9,text,true,,140,160,9,9,http://127.0.0.1:8000/api/salud,2,0,1
+1793003285027,212,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-8,text,true,,568,262,9,9,http://127.0.0.1:8000/api/auth/login,212,0,0
+1793003285295,4,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-4,text,true,,2255,400,9,9,http://127.0.0.1:8000/api/lotes,4,0,0
+1793003285332,2,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-2,text,true,,140,160,9,9,http://127.0.0.1:8000/api/salud,2,0,0
+1793003285351,8,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-7,text,true,,818,574,9,9,http://127.0.0.1:8000/api/costos/calcular,8,0,0
+1793003285404,2,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-3,text,true,,223,162,9,9,http://127.0.0.1:8000/api/auth/yo,2,0,0
+1793003285451,1,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-6,text,true,,140,160,10,10,http://127.0.0.1:8000/api/salud,1,0,0
+1793003285288,207,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-5,text,true,,568,262,10,10,http://127.0.0.1:8000/api/auth/login,207,0,0
+1793003285305,203,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-1,text,true,,568,262,10,10,http://127.0.0.1:8000/api/auth/login,203,0,0
+1793003285540,3,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-8,text,true,,2255,400,10,10,http://127.0.0.1:8000/api/lotes,3,0,0
+1793003285600,9,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-4,text,true,,818,574,10,10,http://127.0.0.1:8000/api/costos/calcular,9,0,0
+1793003285661,1,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-7,text,true,,223,162,10,10,http://127.0.0.1:8000/api/auth/yo,1,0,0
+1793003285707,2,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-3,text,true,,140,160,10,10,http://127.0.0.1:8000/api/salud,2,0,0
+1793003285527,207,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-9,text,true,,568,262,10,10,http://127.0.0.1:8000/api/auth/login,207,0,0
+1793003285729,6,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-10,text,true,,140,160,10,10,http://127.0.0.1:8000/api/salud,5,0,0
+1793003285805,4,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-5,text,true,,2255,400,10,10,http://127.0.0.1:8000/api/lotes,4,0,0
+1793003285821,3,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-1,text,true,,2255,400,10,10,http://127.0.0.1:8000/api/lotes,3,0,0
+1793003285635,206,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-2,text,true,,568,262,10,10,http://127.0.0.1:8000/api/auth/login,206,0,0
+1793003285852,8,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-8,text,true,,818,574,10,10,http://127.0.0.1:8000/api/costos/calcular,8,0,0
+1793003285915,2,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-4,text,true,,223,162,10,10,http://127.0.0.1:8000/api/auth/yo,1,0,0
+1793003285759,201,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-6,text,true,,568,262,10,10,http://127.0.0.1:8000/api/auth/login,201,0,0
+1793003285963,1,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-7,text,true,,140,160,10,10,http://127.0.0.1:8000/api/salud,1,0,0
+1793003286040,4,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-9,text,true,,2255,400,10,10,http://127.0.0.1:8000/api/lotes,4,0,0
+1793003286118,13,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-5,text,true,,818,574,10,10,http://127.0.0.1:8000/api/costos/calcular,13,0,0
+1793003286134,9,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-1,text,true,,818,574,10,10,http://127.0.0.1:8000/api/costos/calcular,9,0,0
+1793003286150,3,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-2,text,true,,2255,400,10,10,http://127.0.0.1:8000/api/lotes,3,0,0
+1793003286166,1,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-8,text,true,,223,162,10,10,http://127.0.0.1:8000/api/auth/yo,1,0,0
+1793003286010,206,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-3,text,true,,568,262,10,10,http://127.0.0.1:8000/api/auth/login,206,0,0
+1793003286229,1,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-4,text,true,,140,160,10,10,http://127.0.0.1:8000/api/salud,1,0,0
+1793003286040,201,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-10,text,true,,568,262,10,10,http://127.0.0.1:8000/api/auth/login,201,0,0
+1793003286276,4,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-6,text,true,,2255,400,10,10,http://127.0.0.1:8000/api/lotes,4,0,0
+1793003286356,11,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-9,text,true,,818,574,10,10,http://127.0.0.1:8000/api/costos/calcular,11,0,0
+1793003286436,2,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-5,text,true,,223,162,10,10,http://127.0.0.1:8000/api/auth/yo,2,0,0
+1793003286451,2,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-1,text,true,,223,162,10,10,http://127.0.0.1:8000/api/auth/yo,2,0,0
+1793003286467,11,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-2,text,true,,818,574,10,10,http://127.0.0.1:8000/api/costos/calcular,11,0,0
+1793003286482,1,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-8,text,true,,140,160,10,10,http://127.0.0.1:8000/api/salud,1,0,0
+1793003286276,207,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-7,text,true,,568,262,10,10,http://127.0.0.1:8000/api/auth/login,207,0,0
+1793003286529,8,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-3,text,true,,2255,400,10,10,http://127.0.0.1:8000/api/lotes,8,0,0
+1793003286544,5,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-10,text,true,,2255,400,10,10,http://127.0.0.1:8000/api/lotes,5,0,0
+1793003286591,8,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-6,text,true,,818,574,10,10,http://127.0.0.1:8000/api/costos/calcular,8,0,0
+1793003286670,1,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-9,text,true,,223,162,10,10,http://127.0.0.1:8000/api/auth/yo,1,0,0
+1793003286748,2,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-5,text,true,,140,160,10,10,http://127.0.0.1:8000/api/salud,2,0,0
+1793003286544,207,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-4,text,true,,568,262,10,10,http://127.0.0.1:8000/api/auth/login,207,0,0
+1793003286763,2,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-1,text,true,,140,160,10,10,http://127.0.0.1:8000/api/salud,2,0,0
+1793003286778,2,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-2,text,true,,223,162,10,10,http://127.0.0.1:8000/api/auth/yo,2,0,0
+1793003286797,6,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-7,text,true,,2255,400,10,10,http://127.0.0.1:8000/api/lotes,6,0,0
+1793003286842,8,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-3,text,true,,818,574,10,10,http://127.0.0.1:8000/api/costos/calcular,8,0,0
+1793003286857,8,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-10,text,true,,818,574,10,10,http://127.0.0.1:8000/api/costos/calcular,8,0,0
+1793003286904,2,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-6,text,true,,223,162,10,10,http://127.0.0.1:8000/api/auth/yo,2,0,0
+1793003286983,2,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-9,text,true,,140,160,10,10,http://127.0.0.1:8000/api/salud,2,0,0
+1793003286795,210,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-8,text,true,,568,262,10,10,http://127.0.0.1:8000/api/auth/login,209,0,0
+1793003287063,7,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-4,text,true,,2255,400,10,10,http://127.0.0.1:8000/api/lotes,7,0,0
+1793003287093,2,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-2,text,true,,140,160,10,10,http://127.0.0.1:8000/api/salud,2,0,0
+1793003287110,11,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-7,text,true,,818,574,10,10,http://127.0.0.1:8000/api/costos/calcular,11,0,0
+1793003287156,2,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-3,text,true,,223,162,10,10,http://127.0.0.1:8000/api/auth/yo,2,0,0
+1793003287171,2,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-10,text,true,,223,162,10,10,http://127.0.0.1:8000/api/auth/yo,2,0,0
+1793003287219,1,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-6,text,true,,140,160,10,10,http://127.0.0.1:8000/api/salud,1,0,0
+1793003287063,208,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-5,text,true,,568,262,10,10,http://127.0.0.1:8000/api/auth/login,208,0,0
+1793003287078,200,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-1,text,true,,568,262,10,10,http://127.0.0.1:8000/api/auth/login,200,0,0
+1793003287313,3,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-8,text,true,,2255,400,10,10,http://127.0.0.1:8000/api/lotes,3,0,0
+1793003287377,14,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-4,text,true,,818,574,10,10,http://127.0.0.1:8000/api/costos/calcular,14,0,0
+1793003287425,2,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-7,text,true,,223,162,10,10,http://127.0.0.1:8000/api/auth/yo,2,0,0
+1793003287472,2,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-3,text,true,,140,160,10,10,http://127.0.0.1:8000/api/salud,2,0,0
+1793003287488,2,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-10,text,true,,140,160,10,10,http://127.0.0.1:8000/api/salud,2,0,0
+1793003287297,204,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-9,text,true,,568,262,10,10,http://127.0.0.1:8000/api/auth/login,204,0,0
+1793003287582,3,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-5,text,true,,2255,400,10,10,http://127.0.0.1:8000/api/lotes,3,0,0
+1793003287582,4,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-1,text,true,,2255,400,10,10,http://127.0.0.1:8000/api/lotes,4,0,0
+1793003287410,201,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-2,text,true,,568,262,10,10,http://127.0.0.1:8000/api/auth/login,201,0,0
+1793003287629,10,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-8,text,true,,818,574,10,10,http://127.0.0.1:8000/api/costos/calcular,10,0,0
+1793003287707,2,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-4,text,true,,223,162,10,10,http://127.0.0.1:8000/api/auth/yo,2,0,0
+1793003287534,202,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-6,text,true,,568,262,10,10,http://127.0.0.1:8000/api/auth/login,202,0,0
+1793003287738,1,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-7,text,true,,140,160,10,10,http://127.0.0.1:8000/api/salud,1,0,0
+1793003287815,4,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-9,text,true,,2255,400,10,10,http://127.0.0.1:8000/api/lotes,4,0,0
+1793003287894,16,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-5,text,true,,818,574,10,10,http://127.0.0.1:8000/api/costos/calcular,16,0,0
+1793003287893,21,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-1,text,true,,818,574,10,10,http://127.0.0.1:8000/api/costos/calcular,21,0,0
+1793003287924,5,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-2,text,true,,2255,400,10,10,http://127.0.0.1:8000/api/lotes,5,0,0
+1793003287940,1,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-8,text,true,,223,162,10,10,http://127.0.0.1:8000/api/auth/yo,1,0,0
+1793003287800,202,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-10,text,true,,568,262,10,10,http://127.0.0.1:8000/api/auth/login,202,0,0
+1793003287784,227,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-3,text,true,,568,262,10,10,http://127.0.0.1:8000/api/auth/login,227,0,0
+1793003288017,1,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-4,text,true,,140,160,10,10,http://127.0.0.1:8000/api/salud,1,0,0
+1793003288048,5,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-6,text,true,,2255,400,10,10,http://127.0.0.1:8000/api/lotes,5,0,0
+1793003288126,8,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-9,text,true,,818,574,10,10,http://127.0.0.1:8000/api/costos/calcular,8,0,0
+1793003288219,3,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-1,text,true,,223,162,10,10,http://127.0.0.1:8000/api/auth/yo,2,0,0
+1793003288219,3,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-5,text,true,,223,162,10,10,http://127.0.0.1:8000/api/auth/yo,3,0,0
+1793003288234,11,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-2,text,true,,818,574,10,10,http://127.0.0.1:8000/api/costos/calcular,11,0,0
+1793003288250,2,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-8,text,true,,140,160,10,10,http://127.0.0.1:8000/api/salud,2,0,0
+1793003288048,207,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-7,text,true,,568,262,10,10,http://127.0.0.1:8000/api/auth/login,207,0,0
+1793003288313,9,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-3,text,true,,2255,400,10,10,http://127.0.0.1:8000/api/lotes,9,0,0
+1793003288313,9,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-10,text,true,,2255,400,10,10,http://127.0.0.1:8000/api/lotes,9,0,0
+1793003288359,8,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-6,text,true,,818,574,10,10,http://127.0.0.1:8000/api/costos/calcular,8,0,0
+1793003288437,2,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-9,text,true,,223,162,10,10,http://127.0.0.1:8000/api/auth/yo,2,0,0
+1793003288530,3,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-1,text,true,,140,160,10,10,http://127.0.0.1:8000/api/salud,3,0,0
+1793003288530,3,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-5,text,true,,140,160,10,10,http://127.0.0.1:8000/api/salud,3,0,0
+1793003288327,207,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-4,text,true,,568,262,10,10,http://127.0.0.1:8000/api/auth/login,207,0,0
+1793003288546,1,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-2,text,true,,223,162,10,10,http://127.0.0.1:8000/api/auth/yo,1,0,0
+1793003288561,4,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-7,text,true,,2255,400,10,10,http://127.0.0.1:8000/api/lotes,4,0,0
+1793003288624,11,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-10,text,true,,818,574,10,10,http://127.0.0.1:8000/api/costos/calcular,11,0,0
+1793003288624,20,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-3,text,true,,818,574,10,10,http://127.0.0.1:8000/api/costos/calcular,20,0,0
+1793003288670,1,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-6,text,true,,223,162,10,10,http://127.0.0.1:8000/api/auth/yo,1,0,0
+1793003288749,1,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-9,text,true,,140,160,10,10,http://127.0.0.1:8000/api/salud,1,0,0
+1793003288561,204,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-8,text,true,,568,262,10,10,http://127.0.0.1:8000/api/auth/login,204,0,0
+1793003288843,12,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-4,text,true,,2255,400,10,10,http://127.0.0.1:8000/api/lotes,12,0,0
+1793003288859,1,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-2,text,true,,140,160,10,10,http://127.0.0.1:8000/api/salud,1,0,0
+1793003288872,8,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-7,text,true,,818,574,10,10,http://127.0.0.1:8000/api/costos/calcular,8,0,0
+1793003288950,2,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-10,text,true,,223,162,10,10,http://127.0.0.1:8000/api/auth/yo,2,0,0
+1793003288950,2,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-3,text,true,,223,162,10,10,http://127.0.0.1:8000/api/auth/yo,2,0,0
+1793003288981,1,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-6,text,true,,140,160,10,10,http://127.0.0.1:8000/api/salud,1,0,0
+1793003288843,212,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-1,text,true,,568,262,10,10,http://127.0.0.1:8000/api/auth/login,212,0,0
+1793003288843,212,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-5,text,true,,568,262,10,10,http://127.0.0.1:8000/api/auth/login,212,0,0
+1793003289076,3,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-8,text,true,,2255,400,10,10,http://127.0.0.1:8000/api/lotes,3,0,0
+1793003289186,1,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-7,text,true,,223,162,10,10,http://127.0.0.1:8000/api/auth/yo,1,0,0
+1793003289170,23,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-4,text,true,,818,574,10,10,http://127.0.0.1:8000/api/costos/calcular,23,0,0
+1793003289060,202,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-9,text,true,,568,262,10,10,http://127.0.0.1:8000/api/auth/login,202,0,0
+1793003289262,2,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-10,text,true,,140,160,10,10,http://127.0.0.1:8000/api/salud,2,0,0
+1793003289262,2,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-3,text,true,,140,160,10,10,http://127.0.0.1:8000/api/salud,2,0,0
+1793003289358,4,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-1,text,true,,2255,400,10,10,http://127.0.0.1:8000/api/lotes,4,0,0
+1793003289358,4,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-5,text,true,,2255,400,10,10,http://127.0.0.1:8000/api/lotes,4,0,0
+1793003289170,204,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-2,text,true,,568,262,10,10,http://127.0.0.1:8000/api/auth/login,204,0,0
+1793003289389,12,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-8,text,true,,818,574,10,10,http://127.0.0.1:8000/api/costos/calcular,12,0,0
+1793003289294,202,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-6,text,true,,568,262,10,10,http://127.0.0.1:8000/api/auth/login,202,0,0
+1793003289499,2,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-4,text,true,,223,162,10,10,http://127.0.0.1:8000/api/auth/yo,2,0,0
+1793003289499,2,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-7,text,true,,140,160,10,10,http://127.0.0.1:8000/api/salud,2,0,0
+1793003289577,9,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-9,text,true,,2255,400,10,10,http://127.0.0.1:8000/api/lotes,9,0,0
+1793003289671,10,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-5,text,true,,818,574,10,10,http://127.0.0.1:8000/api/costos/calcular,10,0,0
+1793003289671,21,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-1,text,true,,818,574,10,10,http://127.0.0.1:8000/api/costos/calcular,21,0,0
+1793003289702,1,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-8,text,true,,223,162,10,10,http://127.0.0.1:8000/api/auth/yo,1,0,0
+1793003289687,17,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-2,text,true,,2255,400,10,10,http://127.0.0.1:8000/api/lotes,17,0,0
+1793003289577,207,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-3,text,true,,568,262,10,10,http://127.0.0.1:8000/api/auth/login,207,0,0
+1793003289577,214,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-10,text,true,,568,262,10,10,http://127.0.0.1:8000/api/auth/login,214,0,0
+1793003289810,4,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-4,text,true,,140,160,10,10,http://127.0.0.1:8000/api/salud,4,0,0
+1793003289811,5,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-6,text,true,,2255,400,10,10,http://127.0.0.1:8000/api/lotes,5,0,0
+1793003289889,13,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-9,text,true,,818,574,10,10,http://127.0.0.1:8000/api/costos/calcular,13,0,0
+1793003289984,1,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-5,text,true,,223,162,10,10,http://127.0.0.1:8000/api/auth/yo,1,0,0
+1793003289999,1,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-1,text,true,,223,162,10,10,http://127.0.0.1:8000/api/auth/yo,1,0,0
+1793003290014,2,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-8,text,true,,140,160,9,9,http://127.0.0.1:8000/api/salud,2,0,0
+1793003289810,209,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-7,text,true,,568,262,9,9,http://127.0.0.1:8000/api/auth/login,209,0,0
+1793003290014,12,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-2,text,true,,818,574,9,9,http://127.0.0.1:8000/api/costos/calcular,12,0,0
+1793003290093,11,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-3,text,true,,2255,400,9,9,http://127.0.0.1:8000/api/lotes,11,0,0
+1793003290093,11,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-10,text,true,,2255,400,9,9,http://127.0.0.1:8000/api/lotes,11,0,0
+1793003290124,19,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-6,text,true,,818,574,9,9,http://127.0.0.1:8000/api/costos/calcular,19,0,0
+1793003290217,2,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-9,text,true,,223,162,9,9,http://127.0.0.1:8000/api/auth/yo,2,0,0
+1793003290296,1,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-5,text,true,,140,160,9,9,http://127.0.0.1:8000/api/salud,1,0,0
+1793003290327,1,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-2,text,true,,223,162,9,9,http://127.0.0.1:8000/api/auth/yo,1,0,0
+1793003290326,7,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-7,text,true,,2255,400,8,8,http://127.0.0.1:8000/api/lotes,7,0,0
+1793003290126,212,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-4,text,true,,568,262,8,8,http://127.0.0.1:8000/api/auth/login,212,0,0
+1793003290406,12,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-3,text,true,,818,574,8,8,http://127.0.0.1:8000/api/costos/calcular,12,0,0
+1793003290420,9,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-10,text,true,,818,574,8,8,http://127.0.0.1:8000/api/costos/calcular,9,0,0
+1793003290451,1,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-6,text,true,,223,162,8,8,http://127.0.0.1:8000/api/auth/yo,1,0,0
+1793003290326,203,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-8,text,true,,568,262,8,8,http://127.0.0.1:8000/api/auth/login,203,0,0
+1793003290530,1,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-9,text,true,,140,160,8,8,http://127.0.0.1:8000/api/salud,1,0,0
+1793003290640,21,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-7,text,true,,818,574,8,8,http://127.0.0.1:8000/api/costos/calcular,21,0,0
+1793003290640,33,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-4,text,true,,2255,400,8,8,http://127.0.0.1:8000/api/lotes,33,0,0
+1793003290719,1,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-3,text,true,,223,162,8,8,http://127.0.0.1:8000/api/auth/yo,1,0,0
+1793003290734,1,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-10,text,true,,223,162,7,7,http://127.0.0.1:8000/api/auth/yo,1,0,0
+1793003290766,2,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-6,text,true,,140,160,7,7,http://127.0.0.1:8000/api/salud,2,0,0
+1793003290609,211,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-5,text,true,,568,262,7,7,http://127.0.0.1:8000/api/auth/login,211,0,0
+1793003290844,7,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-8,text,true,,2255,400,7,7,http://127.0.0.1:8000/api/lotes,7,0,0
+1793003290970,5,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-7,text,true,,223,162,7,7,http://127.0.0.1:8000/api/auth/yo,5,0,0
+1793003290986,12,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-4,text,true,,818,574,7,7,http://127.0.0.1:8000/api/costos/calcular,12,0,0
+1793003291048,1,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-10,text,true,,140,160,7,7,http://127.0.0.1:8000/api/salud,1,0,0
+1793003290844,206,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-9,text,true,,568,262,7,7,http://127.0.0.1:8000/api/auth/login,206,0,0
+1793003291125,4,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-5,text,true,,2255,400,7,7,http://127.0.0.1:8000/api/lotes,4,0,0
+1793003291156,11,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-8,text,true,,818,574,7,7,http://127.0.0.1:8000/api/costos/calcular,11,0,0
+1793003291282,3,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-7,text,true,,140,160,7,7,http://127.0.0.1:8000/api/salud,2,0,0
+1793003291078,210,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-6,text,true,,568,262,7,7,http://127.0.0.1:8000/api/auth/login,210,0,0
+1793003291313,2,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-4,text,true,,223,162,7,7,http://127.0.0.1:8000/api/auth/yo,2,0,0
+1793003291360,7,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-9,text,true,,2255,400,6,6,http://127.0.0.1:8000/api/lotes,7,0,0
+1793003291436,11,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-5,text,true,,818,574,6,6,http://127.0.0.1:8000/api/costos/calcular,11,0,0
+1793003291468,2,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-8,text,true,,223,162,6,6,http://127.0.0.1:8000/api/auth/yo,2,0,0
+1793003291360,206,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-10,text,true,,568,262,6,6,http://127.0.0.1:8000/api/auth/login,206,0,0
+1793003291593,5,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-6,text,true,,2255,400,6,6,http://127.0.0.1:8000/api/lotes,5,0,0
+1793003291671,11,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-9,text,true,,818,574,6,6,http://127.0.0.1:8000/api/costos/calcular,11,0,0
+1793003291750,1,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-5,text,true,,223,162,6,6,http://127.0.0.1:8000/api/auth/yo,1,0,0
+1793003291781,1,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-8,text,true,,140,160,5,5,http://127.0.0.1:8000/api/salud,1,0,0
+1793003291593,211,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-7,text,true,,568,262,5,5,http://127.0.0.1:8000/api/auth/login,211,0,0
+1793003291876,9,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-10,text,true,,2255,400,5,5,http://127.0.0.1:8000/api/lotes,9,0,0
+1793003291907,19,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-6,text,true,,818,574,5,5,http://127.0.0.1:8000/api/costos/calcular,19,0,0
+1793003291986,5,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-9,text,true,,223,162,5,5,http://127.0.0.1:8000/api/auth/yo,5,0,0
+1793003292111,5,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-7,text,true,,2255,400,5,5,http://127.0.0.1:8000/api/lotes,5,0,0
+1793003292189,13,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-10,text,true,,818,574,5,5,http://127.0.0.1:8000/api/costos/calcular,13,0,0
+1793003292235,1,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-6,text,true,,223,162,5,5,http://127.0.0.1:8000/api/auth/yo,1,0,0
+1793003292298,1,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-9,text,true,,140,160,4,4,http://127.0.0.1:8000/api/salud,1,0,0
+1793003292096,215,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-8,text,true,,568,262,4,4,http://127.0.0.1:8000/api/auth/login,215,0,0
+1793003292421,25,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-7,text,true,,818,574,4,4,http://127.0.0.1:8000/api/costos/calcular,25,0,0
+1793003292514,2,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-10,text,true,,223,162,4,4,http://127.0.0.1:8000/api/auth/yo,2,0,0
+1793003292623,3,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-8,text,true,,2255,400,4,4,http://127.0.0.1:8000/api/lotes,3,0,0
+1793003292747,1,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-7,text,true,,223,162,4,4,http://127.0.0.1:8000/api/auth/yo,1,0,0
+1793003292608,215,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-9,text,true,,568,262,3,3,http://127.0.0.1:8000/api/auth/login,215,0,0
+1793003292825,1,01 Salud del servicio (GET /api/salud),200,OK,Usuarios virtuales 1-10,text,true,,140,160,3,3,http://127.0.0.1:8000/api/salud,1,0,0
+1793003292935,19,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-8,text,true,,818,574,3,3,http://127.0.0.1:8000/api/costos/calcular,19,0,0
+1793003293137,12,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-9,text,true,,2255,400,3,3,http://127.0.0.1:8000/api/lotes,12,0,0
+1793003293263,2,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-8,text,true,,223,162,3,3,http://127.0.0.1:8000/api/auth/yo,2,0,0
+1793003293137,217,02 Inicio de sesión del Contador (POST /api/auth/login),200,OK,Usuarios virtuales 1-10,text,true,,568,262,2,2,http://127.0.0.1:8000/api/auth/login,217,0,0
+1793003293452,25,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-9,text,true,,818,574,2,2,http://127.0.0.1:8000/api/costos/calcular,25,0,0
+1793003293669,12,03 Listado de lotes (GET /api/lotes),200,OK,Usuarios virtuales 1-10,text,true,,2255,400,2,2,http://127.0.0.1:8000/api/lotes,11,0,0
+1793003293779,3,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-9,text,true,,223,162,2,2,http://127.0.0.1:8000/api/auth/yo,3,0,0
+1793003293996,21,04 Cálculo de costo por cabeza RF01 (POST /api/costos/calcular),200,OK,Usuarios virtuales 1-10,text,true,,818,574,1,1,http://127.0.0.1:8000/api/costos/calcular,21,0,0
+1793003294325,4,"05 Consulta sin token, rechazo esperado (GET /api/auth/yo)",401,Unauthorized,Usuarios virtuales 1-10,text,true,,223,162,1,1,http://127.0.0.1:8000/api/auth/yo,4,0,0
