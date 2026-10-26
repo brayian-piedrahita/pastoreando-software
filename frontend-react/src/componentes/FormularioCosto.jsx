@@ -1,5 +1,7 @@
 // Captura y valida los datos del calculo (RF01): cuatro rubros, cantidad de animales y proposito.
 // No llama a la API: entrega los valores con alCalcular y la pagina decide que hacer con ellos.
+// Si los datos no pasan la validacion avisa con alInvalido, para que la pagina no deje en pantalla
+// el resultado de un calculo anterior junto a datos que ya no corresponden.
 
 import { useFormulario } from "../hooks/useFormulario.js";
 import { validarCosto } from "../utilidades/validaciones.js";
@@ -16,7 +18,9 @@ const VALORES_INICIALES = {
   proposito: "Carne",
 };
 
-export default function FormularioCosto({ propositos, cargando = false, erroresServidor = {}, alCalcular }) {
+export default function FormularioCosto({
+  propositos, cargando = false, erroresServidor = {}, alCalcular, alInvalido,
+}) {
   const { valores, errores, alCambiar, establecerErrores } = useFormulario(VALORES_INICIALES);
 
   const alEnviar = (evento) => {
@@ -24,6 +28,7 @@ export default function FormularioCosto({ propositos, cargando = false, erroresS
     const encontrados = validarCosto(valores);
     establecerErrores(encontrados);
     if (Object.keys(encontrados).length === 0) alCalcular(valores);
+    else alInvalido?.(encontrados);
   };
 
   const errorDe = (campo) => errores[campo] ?? erroresServidor[campo];

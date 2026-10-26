@@ -70,7 +70,7 @@ export default function PaginaCalculoCosto() {
       <div className="dos-columnas">
         <div>
           <FormularioCosto propositos={propositos} cargando={calculando} erroresServidor={erroresServidor}
-            alCalcular={alCalcular} />
+            alCalcular={alCalcular} alInvalido={() => setResultado(null)} />
           <MensajeAviso tipo="error">{errorGeneral}</MensajeAviso>
         </div>
         <div>

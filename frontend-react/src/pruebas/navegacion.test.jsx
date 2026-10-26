@@ -140,6 +140,31 @@ describe("recorrido completo de un propietario", () => {
   });
 });
 
+describe("calculo de costos con datos que dejan de ser validos", () => {
+  it("quita el resultado anterior cuando el siguiente intento no pasa la validacion", async () => {
+    simularApi(RUTAS_BASE);
+    guardar(CLAVES.SESION, SESION_PROPIETARIO);
+    dibujarApp("/costos");
+    for (const [etiqueta, valor] of [
+      ["Alimentación ($)", "6000000"], ["Mantenimiento ($)", "3000000"], ["Servicios ($)", "1500000"],
+      ["Impuestos ($)", "1500000"], ["Cantidad de animales", "50"],
+    ]) {
+      await userEvent.type(await screen.findByLabelText(etiqueta), valor);
+    }
+    await userEvent.click(screen.getByRole("button", { name: /CALCULAR COSTOS/ }));
+    expect(await screen.findByText("$ 288.000,00")).toBeInTheDocument();
+
+    // Con 0 animales el formulario se rechaza y ya no debe verse el calculo de los 50 animales.
+    const animales = screen.getByLabelText("Cantidad de animales");
+    await userEvent.clear(animales);
+    await userEvent.type(animales, "0");
+    await userEvent.click(screen.getByRole("button", { name: /CALCULAR COSTOS/ }));
+    expect(await screen.findByText("Debe ser mayor o igual a 1")).toBeInTheDocument();
+    expect(screen.queryByText("$ 288.000,00")).not.toBeInTheDocument();
+    expect(screen.getByText("Ingrese los valores y presione calcular")).toBeInTheDocument();
+  });
+});
+
 describe("permisos por rol", () => {
   it("el tecnico no ve el modulo contable y /costos lo devuelve al panel", async () => {
     simularApi(RUTAS_BASE);

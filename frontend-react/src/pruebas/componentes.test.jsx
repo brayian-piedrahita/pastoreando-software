@@ -182,6 +182,16 @@ describe("FormularioCosto", () => {
     expect(alCalcular).not.toHaveBeenCalled();
   });
 
+  it("avisa con alInvalido cuando los datos no pasan la validacion", async () => {
+    const alCalcular = vi.fn();
+    const alInvalido = vi.fn();
+    render(<FormularioCosto propositos={OPCIONES} alCalcular={alCalcular} alInvalido={alInvalido} />);
+    await userEvent.click(screen.getByRole("button", { name: /CALCULAR COSTOS/ }));
+    expect(alInvalido).toHaveBeenCalledTimes(1);
+    expect(alInvalido.mock.calls[0][0]).toHaveProperty("alimentacion");
+    expect(alCalcular).not.toHaveBeenCalled();
+  });
+
   it("entrega los valores cuando son validos", async () => {
     const alCalcular = vi.fn();
     render(<FormularioCosto propositos={OPCIONES} alCalcular={alCalcular} />);
