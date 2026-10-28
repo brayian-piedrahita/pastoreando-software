@@ -12,6 +12,7 @@ Esta carpeta guarda los modelos que se usan para llevar el registro de las prueb
 | `plantillas/registro_de_ejecucion.md` | Bitácora de cada ejecución: fecha, versión, ambiente, resultado | Quien ejecuta la prueba |
 | `plantillas/reporte_de_defecto.md` | Describe un fallo encontrado y sigue su corrección hasta cerrarlo | Quien encuentra el fallo y quien lo corrige |
 | `plantillas/matriz_de_trazabilidad.md` | Relaciona cada requisito con sus casos y con el último resultado | Responsable del plan |
+| `plantillas/lista_de_revision_previa_a_entrega.md` | Doce comprobaciones de código, casos y documentos antes de entregar una evidencia | Quien entrega |
 | `ejemplos/CP-001_calculo_costo_rf01.md` | Un caso ya diligenciado con una ejecución real | Referencia |
 
 ## Convenciones
