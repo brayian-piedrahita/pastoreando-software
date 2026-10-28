@@ -158,6 +158,6 @@ la suite completa contra MySQL 8.4 real.
 
 | Parte | Archivos | Pruebas | Resultado |
 |---|---|---|---|
-| Backend con SQLite | 15 | 248 | 247 aprobadas, 1 omitida (la que solo corre con MySQL) |
-| Backend con MySQL 8.4 | 15 | 248 | 248 aprobadas |
-| Frontend (Vitest) | 13 | 159 | 159 aprobadas |
+| Backend con SQLite | 17 | 297 | 296 aprobadas, 1 omitida (la que solo corre con MySQL) |
+| Backend con MySQL 8.4 | 17 | 297 | 297 aprobadas |
+| Frontend (Vitest) | 13 | 161 | 161 aprobadas |

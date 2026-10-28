@@ -46,9 +46,9 @@ definir `PASTOREANDO_MOTOR=mysql` y las variables de conexión. Al arrancar, la 
 ## Pruebas
 
 ```bash
-python -m pytest -q                                  # 248 pruebas con SQLite
+python -m pytest -q                                  # 297 pruebas con SQLite (296 aprobadas y 1 omitida)
 PASTOREANDO_MOTOR=mysql python -m pytest -q          # las mismas contra MySQL (base *_prueba)
-cd frontend-react && npm test                        # 159 pruebas con Vitest
+cd frontend-react && npm test                        # 161 pruebas con Vitest
 python -m black --check app tests && python -m flake8 --max-line-length 88 app tests
 cd frontend-react && npm run build                   # compilación de producción
 ```
